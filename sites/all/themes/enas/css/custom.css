@@ -7254,6 +7254,14 @@ a.th {
   max-width: 800px;
 }
 
+/*** OUR STYLES ***/
+
+.views-row {
+	margin: 15px 0;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #ccc;
+}
+
 /* Each individual part that can be added in */
 /* line 3, ../scss/base/_drupal.scss */
 .admin-menu .fixed {

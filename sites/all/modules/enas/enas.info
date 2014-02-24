@@ -1,0 +1,13 @@
+name = ENAS
+description = Helper functions for the ENAS website
+core = 7.x
+php = 5
+
+configure = admin/config/services/enas
+
+; Information added by Drupal.org packaging script on 2014-01-09
+version = "7.x-1.0-dev"
+core = "7.x"
+project = "enas"
+datestamp = "1389259410"
+

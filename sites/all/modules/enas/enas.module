@@ -1,0 +1,30 @@
+<?php
+
+/**
+ * @file
+ * The ENAS Drupal module.
+ */
+
+function enas_user_studio($uid) {
+	
+}
+
+function enas_publish_studio_after_payment($uid) {
+	/* Believe it or not, when you complete an order on a node that has a product reference
+	* field, the completed order contains NO RECORD of the product reference. So it's not
+	* possible using Rules, as far as I can see, to simply publish a node when a product referenced
+	* on it has been purchased. Trust Drupal to take a simple idea and try to make it so flexible
+	* that it borderline doesn't work. Drupal commerce is very powerful but I'd love to see a
+	* non-developer try to make anything but the simplest setup work.
+	* Anyway, we have to find a way around this, and it's a little hacky, but should work in almost
+	* all scenarios: we get the user's most recent studio node and publish that ourselves.
+	*/
+	$sql = "SELECT nid FROM node WHERE uid = ".$uid." AND type = 'studio' ORDER BY created DESC LIMIT 1";
+	$result = db_query($sql);
+	foreach($result as $row) {
+		$nid = $row->nid;
+	}
+	$studio = node_load($nid);
+	$studio->status = 1;
+	node_save($studio);
+}

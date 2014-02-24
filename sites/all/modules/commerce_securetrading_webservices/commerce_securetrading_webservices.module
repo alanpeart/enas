@@ -1,0 +1,349 @@
+<?php
+
+require_once(dirname(__FILE__) . '/securetrading_stpp/STPPLoader.php');
+require_once(dirname(__FILE__) . '/DrupalCommerceWebServices.class.php');
+
+/**
+ * Implements hook_menu().
+ */
+function commerce_securetrading_webservices_menu() {
+	$items['admin/config/commerce/securetrading_webservices'] = array(
+		'title' => 'SecureTrading Web Services Configuration',
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('commerce_securetrading_webservices_config'),
+		'access arguments' => array('administer payments'),
+	);
+	
+	$items['checkout/commerce_securetrading_webservices_3d_secure_callback'] = array(
+		'title' => 'SecureTrading Web Services 3D Secure Callback',
+		'page callback' => 'commerce_securetrading_webservices_3d_secure_view',
+		'access arguments' => array("access checkout"),
+		'type' => MENU_CALLBACK,
+	);
+	
+	return $items;
+}
+
+/**
+ * Custom router.  Defined in commerce_securetrading_webservices_menu().
+ * Used as the Term URL in 3D Secure transactions.  Takes the MD and PaRes, uses them to perform a 3D AUTH and handles the response. 
+ */
+function commerce_securetrading_webservices_3d_secure_view() {
+
+	if (!isset($_POST['MD']) || !is_string($_POST['MD'])) {
+		exit('No MD.');
+	}
+	
+	$result = db_query('SELECT orderreference FROM commerce_securetrading_webservices_3dsecure WHERE md = :md', array(':md' => $_POST['MD']));
+	
+	if ($result->rowCount() !== 1) {
+		exit('Incorrect MD count (' . $result->rowCount() . ')');
+	}
+	
+	$webServices = new DrupalCommerceWebServices();
+	
+	$orderReference = $result->fetchObject()->orderreference;
+	$order = $webServices->loadOrder($orderReference);
+	
+	$array = explode('|', $order->data['payment_method']);
+	$paymentMethodId = $array[0];
+	
+	$payment_method = commerce_payment_method_load($paymentMethodId);
+	$charge = $order->commerce_order_total['und'][0];
+	unset($charge['data']);
+	
+	$webServices->paymentParams = $webServices->callbackParams = $webServices->errorParams = array(
+		'payment_method' => $payment_method,
+		'order' => $order,
+		'charge' => $charge,
+	);
+	
+	$webServices->setAuthentication(variable_get('commerce_securetrading_webservices_username', ''), variable_get('commerce_securetrading_webservices_password', ''));
+	$webServices->run3dCallback(variable_get('commerce_securetrading_webservices_alias', ''), TRUE);
+}
+
+/**
+ * Custom router.  Defined in commerce_securetrading_webservices_menu().
+ * Builds the admin config form for this module.
+ */
+function commerce_securetrading_webservices_config($form, &$form_state) {
+	$form['help'] = array(
+		'#prefix' => '<p>',
+		'#suffix' => '</p>',
+		'#markup' => t('For more information about this module please consult the readme file.  The latest version of the module (and the readme) can be found at <a href="http://www.securetrading.com" target="_blank">http://www.securetrading.com</a>.'),
+	);
+	
+	$form['commerce_securetrading_webservices_sitereference'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Site Reference'),
+		'#description' => t('Your SecureTrading Site Reference.'),
+		'#default_value' => variable_get('commerce_securetrading_webservices_sitereference', ''),
+		'#size' => 50,
+	);
+
+	$form['commerce_securetrading_webservices_alias'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Alias'),
+		'#description' => t('Your SecureTrading Alias'),
+		'#default_value' => variable_get('commerce_securetrading_webservices_alias', ''),
+		'#size' => 50,
+	);
+
+	$form['commerce_securetrading_webservices_username'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Username'),
+		'#description' => t('This is the username you will use to access the Web Services.'),
+		'#default_value' => variable_get('commerce_securetrading_webservices_username', ''),
+		'#size' => 50,
+	);
+
+	$form['commerce_securetrading_webservices_password'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Password'),
+		'#description' => t('This is the password you will use to access the Web Services.'),
+		'#default_value' => variable_get('commerce_securetrading_webservices_password', ''),
+		'#size' => 50,
+	);
+
+	$form['commerce_securetrading_webservices_use3dsecure'] = array(
+		'#type' => 'radios',
+		'#title' => t('Use 3D Secure'),
+		'#description' => t('In order to enable 3D Secure you must arrange this with your aquiring bank.  You should then contact SecureTrading Support.'),
+		'#options' => array(0 => 'No', 1 => 'Yes'),
+		'#default_value' => variable_get('commerce_securetrading_webservices_use3dsecure', 0)
+	);
+
+	$form['commerce_securetrading_webservices_requiresecuritycode'] = array(
+		'#type' => 'radios',
+		'#title' => t('Require Security Code'),
+		'#description' => t('Require the Security Code in order to force all users to provide their CCV2 code.'),
+		'#options' => array(0 => 'No', 1 => 'Yes'),
+		'#default_value' => variable_get('commerce_securetrading_webservices_requiresecuritycode', 0)
+	);
+
+	$form['commerce_securetrading_webservices_method_title'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Module Name'),
+		'#description' => t('This is the module name as it appears in the front-end checkout.'),
+		'#default_value' => variable_get('commerce_securetrading_webservices_method_title', 'SecureTrading Web Services')
+	);
+
+	$form['commerce_securetrading_webservices_acceptedcards'] = array(
+		'#type' => 'select',
+		'#multiple' => TRUE,
+		'#size' => 6,
+		'#title' => t('Accepted Cards'),
+		'#description' => t('This is a list of the cards you wish to enable for processing by the SecureTrading STAPI plugin.'),
+		'#options' => DrupalCommerceWebServices::getCardsArray(),
+		'#default_value' => variable_get('commerce_securetrading_webservices_acceptedcards', '')
+	);
+
+	$form['commerce_securetrading_webservices_settleduedate'] = array(
+		'#type' => 'select',
+		'#title' => t('Settle Due Date'),
+		'#description' => t('The number of days you wish to wait before funds are retrieved from your customers\' account.'),
+		'#options' => DrupalCommerceWebServices::getSettleDueDateArray(),
+		'#default_value' => variable_get('commerce_securetrading_webservices_settleduedate', '0'),
+	);
+
+	$form['commerce_securetrading_webservices_settlestatus'] = array(
+		'#type' => 'select',
+		'#title' => t('Settle Status'),
+		'#description' => t('The default settlement status is 0.'),
+		'#options' => DrupalCommerceWebServices::getSettleStatusArray(),
+		'#default_value' => variable_get('commerce_securetrading_webservices_settlestatus', '0'),
+	);
+	
+	return system_settings_form($form);
+}
+
+/**
+ * Implements hook_commerce_payment_method_info().
+ */
+function commerce_securetrading_webservices_commerce_payment_method_info() {
+	$payment_methods = array();
+
+		$payment_methods['commerce_securetrading_webservices'] = array(
+		'title' => t(variable_get('commerce_securetrading_webservices_method_title', 'SecureTrading Web Services')),
+		'description' => t('Integrates Drupal Commerce with the SecureTrading Web Services payment interface.'),
+		'active' => TRUE,
+	);
+
+	return $payment_methods;
+}
+
+/**
+ * Payment method callback.  Creates the payment form.
+ */
+function commerce_securetrading_webservices_submit_form($payment_method, $pane_values, $checkout_pane, $order) {
+	$form = array();
+	
+	$form['payment_type'] = array(
+		'#type' => 'select',
+		'#title' => t('Card Type'),
+		'#description' => t('Your card type.'),
+		'#default_value' => '',
+		'#required' => TRUE,
+		'#options' => DrupalCommerceWebServices::getCardsArray(),
+	);
+	
+	$form['pan'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Card Number'),
+		'#description' => t('Your card number.'),
+		'#default_value' => '',
+		'#required' => TRUE,
+	);
+	
+	$form['expiry_month'] = array(
+		'#type' => 'select',
+		'#title' => t('Expiry Month'),
+		'#description' => t('Your card expiry month.'),
+		'#default_value' => '',
+		'#required' => TRUE,
+		'#options' => DrupalCommerceWebServices::getExpiryMonthsArray(),
+	);
+
+	$form['expiry_year'] = array(
+		'#type' => 'select',
+		'#title' => t('Expiry Year'),
+		'#description' => t('Your card expiry year.'),
+		'#default_value' => '',
+		'#required' => TRUE,
+		'#options' => array_combine(DrupalCommerceWebServices::getExpiryYearsArray(), DrupalCommerceWebServices::getExpiryYearsArray()),
+	);
+	
+	if (variable_get('commerce_securetrading_webservices_requiresecuritycode', FALSE)) {
+		$form['security_code'] = array(
+			'#type' => 'textfield',
+			'#title' => t('Security Code'),
+			'#description' => t('Your security code.'),
+			'#default_value' => '',
+			'#required' => TRUE,
+		);
+	}
+	
+	return $form;
+}
+
+/**
+ * Payment method callback.  Validates the submitted payment form.
+ */
+function ccommerce_securetrading_webservices_submit_form_validate($payment_method, $pane_form, $pane_values, $order, $form_parents = array()) {
+	return TRUE; // No validation required.
+}
+
+/**
+ * Payment method callback.  Handles the submitted payment form.
+ */
+function commerce_securetrading_webservices_submit_form_submit($payment_method, $pane_form, $pane_values, $order, $charge) {
+	global $base_url;
+	
+	unset($pane_form); // Unset form which contains CC details.
+	
+  	$requestObject = new stdClass;
+	$requestObject->sitereference = variable_get('commerce_securetrading_webservices_sitereference', '');
+	$requestObject->alias = variable_get('commerce_securetrading_webservices_alias', '');
+	$requestObject->currencycode = $order->commerce_order_total['und'][0]['currency_code'];
+	$requestObject->amount = $order->commerce_order_total['und'][0]['amount'];
+	$requestObject->accounttypedescription = "ECOM";
+	
+	$billingDetails = commerce_customer_profile_load($order->commerce_customer_billing['und'][0]['profile_id']);
+	$shippingDetails = commerce_customer_profile_load($order->commerce_customer_shipping['und'][0]['profile_id']);
+	
+	$billingNames = explode(' ', $billingDetails->commerce_customer_address['und'][0]['name_line']);
+	$billingFirstName = array_shift($billingNames);
+	$billingLastName = implode(' ', $billingNames);
+	
+	$shippingNames = explode(' ', $shippingDetails->commerce_customer_address['und'][0]['name_line']);
+	$shippingFirstName = array_shift($shippingNames);
+	$shippingLastName = implode(' ', $shippingNames);
+	
+	$requestObject->billingfirstname = $billingFirstName;
+	$requestObject->billinglastname = $billingLastName;
+	$requestObject->billingteltype = '';
+	$requestObject->billingtelno = '';
+	$requestObject->billingemail = '';
+	
+	$requestObject->billingpremise = $billingDetails->commerce_customer_address['und'][0]['thoroughfare'];
+	$requestObject->billingstreet = $billingDetails->commerce_customer_address['und'][0]['premise'];
+	$requestObject->billingtown = $billingDetails->commerce_customer_address['und'][0]['locality'];
+	$requestObject->billingcounty = $billingDetails->commerce_customer_address['und'][0]['administrative_area'];
+	$requestObject->billingpostcode = $billingDetails->commerce_customer_address['und'][0]['postal_code'];
+	$requestObject->billingcountry = $billingDetails->commerce_customer_address['und'][0]['country'];
+	
+	$requestObject->customerfirstname = $shippingFirstName;
+	$requestObject->customerlastname = $shippingLastName;
+	$requestObject->customerteltype = '';
+	$requestObject->customertelno = '';
+	$requestObject->customeremail = '';
+	
+	$requestObject->customerpremise = $shippingDetails->commerce_customer_address['und'][0]['thoroughfare'];
+	$requestObject->customerstreet = $shippingDetails->commerce_customer_address['und'][0]['premise'];
+	$requestObject->customertown = $shippingDetails->commerce_customer_address['und'][0]['locality'];
+	$requestObject->customercounty =$shippingDetails->commerce_customer_address['und'][0]['administrative_area'];
+	$requestObject->customerpostcode = $shippingDetails->commerce_customer_address['und'][0]['postal_code'];
+	$requestObject->customercountry = $shippingDetails->commerce_customer_address['und'][0]['country'];
+	
+	$requestObject->settleduedate = variable_get('commerce_securetrading_webservices_settleduedate', 0);
+	$requestObject->settlestatus = variable_get('commerce_securetrading_webservices_settlestatus', 0);
+	
+	$requestObject->orderreference =  $order->order_number;
+	
+	$requestObject->paymenttype = $pane_values['payment_type'];
+	$requestObject->pan = $pane_values['pan'];
+	$requestObject->expirydate = $pane_values['expiry_month'] . '/' . $pane_values['expiry_year'];
+	$requestObject->securitycode = isset($pane_values['security_code']) ? $pane_values['security_code'] : '';
+
+	
+	unset($pane_values); // Unset pane values which contain CC details now we have put them into the request object.
+	
+	$requestObject->termurl = $base_url . '/checkout/commerce_securetrading_webservices_3d_secure_callback';
+	
+	commerce_order_save($order);
+	
+	$webServices = new DrupalCommerceWebServices();
+	
+	$webServices->paymentParams = $webServices->callbackParams = $webServices->errorParams = array(
+		'payment_method' => $payment_method,
+		'order' => $order,
+		'charge' => $charge,
+		'noRedirect' => TRUE, // Set this to not redirect in DrupalCommerceWebServices::handleError().  This lets us return to this scope after calling runSTAPI() so we can return FALSE.
+	);
+	
+	$webServices->setAuthentication(variable_get('commerce_securetrading_webservices_username', ''), variable_get('commerce_securetrading_webservices_password', ''));
+	$webServices->runSTAPI($requestObject, variable_get('commerce_securetrading_webservices_use3dsecure'));
+	
+	return $webServices->success;
+}
+
+/**
+ * Implements hook_form_alter.
+ * Adds an error message to the form if the checkout/%order_number/review page has been selected and an error message is in the session.
+ */
+function commerce_securetrading_webservices_form_alter(&$form, &$form_state, $form_id) {
+	if ($form_id === 'commerce_checkout_form_review') {
+		if (isset($_SESSION['securetrading_webservices_error']) && $_SESSION['securetrading_webservices_error']) {
+			$form['error_message'] = array(
+			  '#markup' => theme('commerce_checkout_errors_message', array('label' => t('Error'), 'message' => $_SESSION['securetrading_webservices_error'])),
+			  '#weight' => -10,
+			);
+			unset($_SESSION['securetrading_webservices_error']);
+		}
+	}
+}
+
+/**
+ * Adds payment information to the 'Payment' tab.  Called after an order has been made successfully.
+ */
+ function commerce_securetrading_webservices_transaction($payment_method, $order, $charge, $transactionReference) {
+	$transaction = commerce_payment_transaction_new($payment_method['method_id'], $order->order_id);
+	$transaction->instance_id = '';
+	$transaction->remote_id = $transactionReference;
+	$transaction->amount = $charge['amount'];
+	$transaction->currency_code = $charge['currency_code'];
+	$transaction->status = COMMERCE_PAYMENT_STATUS_SUCCESS;
+	$transaction->message = '';
+
+	commerce_payment_transaction_save($transaction);
+}

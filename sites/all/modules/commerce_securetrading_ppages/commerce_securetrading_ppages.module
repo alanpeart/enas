@@ -1,0 +1,330 @@
+<?php
+
+require_once(dirname(__FILE__) . '/securetrading_stpp/STPPLoader.php');
+require_once(dirname(__FILE__) . '/DrupalCommercePPages.class.php');
+
+/**
+ * Implements hook_menu.
+ */
+function commerce_securetrading_ppages_menu() {
+	$items = array();
+	
+	$items['admin/config/commerce/securetrading_ppages'] = array(
+		'title' => 'ST PPages Config',
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('commerce_securetrading_ppages_config'),
+		'access arguments' => array('administer payments'),
+	);
+	
+	$items['commerce/securetrading_ppages/notification'] = array(
+		'title' => 'SecureTrading Payment Pages Notification',
+		'page callback' => 'commerce_securetrading_ppages_notification',
+		'access callback' => array('commerce_securetrading_ppages_notification_and_redirect_access'),
+		'type' => MENU_CALLBACK,
+	);
+	
+	$items['commerce/securetrading_ppages/redirect'] = array(
+		'title' => 'SecureTrading Payment Pages Redirect',
+		'page callback' => 'commerce_securetrading_ppages_redirect',
+		'access callback' => array('commerce_securetrading_ppages_notification_and_redirect_access'),
+		'type' => MENU_CALLBACK,
+	);
+	
+	return $items;
+}
+
+/**
+ * Creates the module configuration form.
+ */
+function commerce_securetrading_ppages_config($form, &$form_state) {
+	$form['commerce_securetrading_ppages_sitereference'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Site Reference'),
+		'#description' => t('If you do not have a SecureTrading Site Reference then  please visit www.securetrading.com and contact our Sales team.'),
+		'#default_value' => variable_get('commerce_securetrading_ppages_sitereference', ''),
+	);
+
+	$form['commerce_securetrading_ppages_method_title'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Module Name'),
+		'#description' => t('This is the name of the module as it will appear to your customers in the checkout.'),
+		'#default_value' => variable_get('commerce_securetrading_ppages_method_title', 'SecureTrading Payment Pages')
+	);
+
+	$form['commerce_securetrading_ppages_use_sitesecurity'] = array(
+		'#type' => 'select',
+		'#title' => t('Use Site Security'),
+		'#description' => t('Enabling this option will greatly improve the security of your store.  When set, you must inform SecureTrading that you have enabled Site Security and inform them of your chosen password.'),
+		'#options' => array(0 => 'No', 1 => 'Yes'),
+		'#default_value' => variable_get('commerce_securetrading_ppages_use_sitesecurity', 1)
+	);
+
+	$form['commerce_securetrading_ppages_sitesecurity'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Site Security Password'),
+		'#description' => 'This should be a hard-to guess password made up of numbers, letters and symbols.  Do not reveal this password to anybody else.',
+		'#default_value' => variable_get('commerce_securetrading_ppages_sitesecurity', '')
+	);
+
+	$form['commerce_securetrading_ppages_use_notification'] = array(
+		'#type' => 'select',
+		'#title' => t('Use Notification Hash'),
+		'#description' => t('Enabling the notification hash will secure the notification script from unauthorized access.  The password you enter below must also be entered into MyST for this feature to work correctly.'),
+		'#options' => array(0 => 'No', 1 => 'Yes'),
+		'#default_value' => variable_get('commerce_securetrading_ppages_use_notification', 1)
+	);
+
+	$form['commerce_securetrading_ppages_notification'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Notification Password'),
+		'#description' => 'This should be a hard-to guess password made up of numbers, letters and symbols.  Do not reveal this password to anybody else.',
+		'#default_value' => variable_get('commerce_securetrading_ppages_notification', '')
+	);
+
+	$form['commerce_securetrading_ppages_settleduedate'] = array(
+		'#type' => 'select',
+		'#title' => t('Settle Due Date'),
+		'#description' => t('The number of days you wish to wait before funds are retrieved from your customer\'s account.'),
+		'#options' => DrupalCommercePPages::getSettleDueDateArray(),
+		'#default_value' => variable_get('commerce_securetrading_ppages_settleduedate', 0)
+	);
+
+	$form['commerce_securetrading_ppages_settlestatus'] = array(
+		'#type' => 'select',
+		'#title' => t('Settle Status'),
+		'#description' => t('The default settlement status is 0.'),
+		'#options' => DrupalCommercePPages::getSettleStatusArray(),
+		'#default_value' => variable_get('commerce_securetrading_ppages_settlestatus', 0)
+	);
+
+	$form['commerce_securetrading_ppages_parentcss'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Parent CSS'),
+		'#description' => 'f you wish to use a custom master CSS stylesheet on the Payment Pages enter the filename (without the ".css" extension) here.  Remember to upload the file to the MyST File Manager.',
+		'#default_value' => variable_get('commerce_securetrading_ppages_parentcss', '')
+	);
+
+	$form['commerce_securetrading_ppages_childcss'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Child CSS'),
+		'#description' => 'If you wish to use a custom child CSS stylesheet on the Payment Pages enter the filename (without the ".css" extension) here.  Remember to upload the file to the MyST File Manager.',
+		'#default_value' => variable_get('commerce_securetrading_ppages_childcss', '')
+	);
+
+	$form['commerce_securetrading_ppages_parentjs'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Parent JS'),
+		'#description' => 'If you wish to use any custom JavaScript on the Payment Pages enter the filename (without the ".js" extension) here.  Remember to upload the file to the MyST File Manager.',
+		'#default_value' => variable_get('commerce_securetrading_ppages_parentjs', '')
+	);
+
+	$form['commerce_securetrading_ppages_childjs'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Child JS'),
+		'#description' => 'If you wish to use any custom Javascript on the Payment Pages (that overrides the parent JS) enter the filename (without the ".js" extension) here.  Remember to upload the file to the MyST File Manager.',
+		'#default_value' => variable_get('commerce_securetrading_ppages_childjs', '')
+	);
+	
+	return system_settings_form($form);
+}
+ 
+/**
+ * Implements hook_commerce_payment_method_info().
+ */
+function commerce_securetrading_ppages_commerce_payment_method_info() {
+	$payment_methods = array();
+
+	$payment_methods['commerce_securetrading_ppages'] = array(
+		'title' => t(variable_get('commerce_securetrading_ppages_method_title', '')),
+		'description' => t('Integrates Drupal Commerce with the SecureTrading Payment Pages.'),
+		'active' => TRUE,
+	);
+	return $payment_methods;
+}
+
+/**
+ * Payment method callback.
+ * Creates a form to be displayed when this payment method is selected.  Could be used to create a credit card form.  Not required here so just return void.
+ */
+function commerce_securetrading_ppages_submit_form($payment_method, $pane_values, $checkout_pane, $order) {
+	return;
+}
+
+/**
+ * Payment method callback.
+ * Validate post data before running commerce_securetrading_ppages_submit_form_submit().
+ * 
+ */
+function ccommerce_securetrading_ppages_submit_form_validate($payment_method, $pane_form, $pane_values, $order, $form_parents = array()) {
+	return TRUE; // No validation required.  Just return TRUE.
+}
+
+/**
+ * Payment method callback.
+ * Format the order data and create a hidden form that will automatically post to the gateway.
+ * 
+ */
+function commerce_securetrading_ppages_submit_form_submit($payment_method, $pane_form, $pane_values, $order, $charge) {
+	$billingDetails = commerce_customer_profile_load($order->commerce_customer_billing['und'][0]['profile_id']);
+	$shippingDetails = commerce_customer_profile_load($order->commerce_customer_shipping['und'][0]['profile_id']);
+
+	$billingNames = explode(' ', $billingDetails->commerce_customer_address['und'][0]['name_line']);
+	$billingFirstName = array_shift($billingNames);
+	$billingLastName = implode(' ', $billingNames);
+	
+	$requestObject = new stdClass;
+	$requestObject->sitereference = variable_get('commerce_securetrading_ppages_sitereference', '');
+	$requestObject->currencyiso3a = $order->commerce_order_total['und'][0]['currency_code'];
+	$requestObject->mainamount = DrupalCommercePPages::formatPrice($order->commerce_order_total['und'][0]['amount'] / 100, $requestObject->currencyiso3a);
+
+	$requestObject->billingprefix = '';
+	$requestObject->billingfirstname = $billingFirstName;
+	$requestObject->billinglastname = $billingLastName;
+	$requestObject->billingtelephonetype = '';
+	$requestObject->billingtelephone = '';
+	$requestObject->billingemail = '';
+
+	$requestObject->billingpremise = $billingDetails->commerce_customer_address['und'][0]['thoroughfare'];
+	$requestObject->billingstreet = $billingDetails->commerce_customer_address['und'][0]['premise'];
+	$requestObject->billingtown = $billingDetails->commerce_customer_address['und'][0]['locality'];
+	$requestObject->billingcounty = $billingDetails->commerce_customer_address['und'][0]['administrative_area'];
+	$requestObject->billingpostcode = $billingDetails->commerce_customer_address['und'][0]['postal_code'];
+	$requestObject->billingcountryiso2a = $billingDetails->commerce_customer_address['und'][0]['country'];
+
+	$requestObject->customertelephonetype = '';
+	$requestObject->customertelephone = '';
+	$requestObject->customeremail = '';
+
+	$requestObject->customerpremise = $shippingDetails->commerce_customer_address['und'][0]['thoroughfare'];
+	$requestObject->customerstreet = $shippingDetails->commerce_customer_address['und'][0]['premise'];
+	$requestObject->customertown = $shippingDetails->commerce_customer_address['und'][0]['locality'];
+	$requestObject->customercounty = $shippingDetails->commerce_customer_address['und'][0]['administrative_area'];
+	$requestObject->customerpostcode = $shippingDetails->commerce_customer_address['und'][0]['postal_code'];
+	$requestObject->customercountryiso2a = $shippingDetails->commerce_customer_address['und'][0]['country'];
+
+	$requestObject->settleduedate = variable_get('commerce_securetrading_ppages_settleduedate', '');
+	$requestObject->settlestatus = variable_get('commerce_securetrading_ppages_settlestatus', '');
+
+	$requestObject->orderreference = $order->order_id;
+
+	$requestObject->parentcss = variable_get('commerce_securetrading_ppages_parentcss', '');
+	$requestObject->childcss = variable_get('commerce_securetrading_ppages_childcss', '');
+	$requestObject->parentjs = variable_get('commerce_securetrading_ppages_parentjs', '');
+	$requestObject->childjs = variable_get('commerce_securetrading_ppages_childjs', '');
+
+	if (TRUE) {
+		DrupalCommercePPages::createHash($requestObject, variable_get('commerce_securetrading_ppages_sitesecurity'));
+	}
+	
+	$ppages = new DrupalCommercePPages();
+	$ppages->errorParams = array('orderreference' => $requestObject->orderreference);
+	$ppages->runPaymentPages($requestObject);
+	exit;
+}
+
+/**
+ * Implements hook_form_alter.
+ * Adds an error message to the form if the checkout/%order_number/review page has been selected and an error message is in the session.
+ */
+ // TODO - this one...
+function commerce_securetrading_ppages_form_alter(&$form, &$form_state, $form_id) {
+	if ($form_id === 'commerce_checkout_form_review') {
+		if (isset($_SESSION['securetrading_ppages_error']) && $_SESSION['securetrading_ppages_error']) {
+			$form['error_message'] = array(
+			  '#markup' => theme('commerce_checkout_errors_message', array('label' => t('Error'), 'message' => $_SESSION['securetrading_ppages_error'])),
+			  '#weight' => -10,
+			);
+			unset($_SESSION['securetrading_ppages_error']);
+		}
+	}
+}
+
+/**
+ * Add a line to the 'Payment' tab of an order.
+ */
+function commerce_securetrading_ppages_transaction($payment_method, $order, $charge, $transactionReference) {
+	$transaction = commerce_payment_transaction_new('commerce_payment_example', $order->order_id);
+	$transaction->instance_id = $payment_method['instance_id'];
+	$transaction->remote_id = $transactionReference;
+	$transaction->amount = $charge['amount'];
+	$transaction->currency_code = $charge['currency_code'];
+	$transaction->status = COMMERCE_PAYMENT_STATUS_SUCCESS;
+	$transaction->message = '';
+	
+	commerce_payment_transaction_save($transaction);
+}
+
+/**
+ * Access callback for commerce_securetrading_ppages_notification() and commerce_securetrading_ppages_redirect().
+ * Allow anyone access to the scripts so just return TRUE.
+ */
+function commerce_securetrading_ppages_notification_and_redirect_access() {
+	return TRUE;
+}
+
+/**
+ * The notification script.
+ */
+function commerce_securetrading_ppages_notification() {
+	$orderRef = isset($_POST['orderreference']) ? $_POST['orderreference'] : '';
+
+	$ppages = new DrupalCommercePPages();
+	$ppages->errorParams = array('orderreference' => $orderRef);
+	
+	if (!isset($_POST['errorcode'])) {
+		$ppages->createException(new Exception('The errorcode was not sent to the notification script.'), __FILE__, __CLASS__, __LINE__);
+	}
+	
+	if (!isset($_POST['orderreference'])) {
+		$ppages->createException(new Exception('The orderreference was not sent to the notification script.'), __FILE__, __CLASS__, __LINE__);
+	}
+	
+	if (!isset($_POST['transactionreference'])) {
+		$ppages->createException(new Exception('The transactionreference was not sent to the notification script.'), __FILE__, __CLASS__, __LINE__);
+	}
+	
+	if ($_POST['errorcode'] !== "0") {
+		$ppages->createException(new Exception('A non-zero errorcode was sent to the notification script.'), __FILE__, __CLASS__, __LINE__);
+	}
+	
+	$order = commerce_order_load($_POST['orderreference']);
+	
+	if (!$order) {
+		$ppages->createException(new Exception(sprintf('Order number % could not be loaded.', $_POST['orderreference'])), __FILE__, __CLASS__, __LINE__);
+	}
+	
+	if (!isset($_POST['responsesitesecurity']) && variable_get('commerce_securetrading_ppages_use_notification_hash', TRUE)) {
+		$ppages->createException(new Exception('The responsesitesecurity hash was not provided but the notification hash was enabled.'), __FILE__, __CLASS__, __LINE__);
+	}
+	
+	if (isset($_POST['responsesitesecurity']) && hash('sha256', $_POST['errorcode'] . $_POST['orderreference'] . $_POST['transactionreference'] . variable_get('commerce_securetrading_ppages_notification', '')) !== $_POST['responsesitesecurity']) {
+		$ppages->createException(new Exception('The returned responsesitesecurity did not match the regenerated hash.'), __FILE__, __CLASS__, __LINE__);
+	}
+	
+	$array = explode('|', $order->data['payment_method']);
+	$paymentMethodId = $array[0];
+	
+	$payment_method = commerce_payment_method_load($paymentMethodId);
+	$charge = $order->commerce_order_total['und'][0];
+	unset($charge['data']);
+	
+	commerce_securetrading_ppages_transaction($payment_method, $order, $charge, $_POST['transactionreference']);
+	commerce_checkout_complete($order);
+	
+	exit('Notification complete.');
+}
+
+/**
+ * The redirect script.
+ */
+function commerce_securetrading_ppages_redirect() {
+	$ppages = new DrupalCommercePPages();
+	$ppages->errorParams = array('orderreference' => NULL); // The redirect will only fail if the orderreference was not provided so we set that to NULL here to redirect the customer to the checkout if it is not present.
+	
+	if (!isset($_GET['orderreference'])) {
+		$ppages->createException(new Exception('The orderreference was not returned to the redirect script.'), __FILE__, __CLASS__, __LINE__);
+	}
+	
+	drupal_goto('checkout/' . $_GET['orderreference'] . '/complete');
+	exit;
+}

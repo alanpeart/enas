@@ -1,0 +1,94 @@
+03rd Apr 2013 - 17:30:59 BST - 2 - ABAPI - Line 0295 - 00000: An alias has not been provided.
+04th Apr 2013 - 10:54:35 BST - 1 - ABAPI - Line 0255 - 70000: Decline
+04th Apr 2013 - 10:56:11 BST - 1 - ABAPI - Line 0255 - 70000: Decline
+04th Apr 2013 - 11:04:52 BST - 1 - ABAPI - Line 0255 - 70000: Decline
+04th Apr 2013 - 12:16:36 BST - 1 - ABAPI - Line 0255 - 70000: Decline
+04th Apr 2013 - 12:17:08 BST - 1 - ABAPI - Line 0255 - 70000: Decline
+04th Apr 2013 - 13:40:19 BST - 1 - ABAPI - Line 0255 - 70000: Decline
+04th Apr 2013 - 13:55:38 BST - 1 - ABAPI - Line 0255 - 70000: Decline
+04th Apr 2013 - 13:56:48 BST - 1 - ABAPI - Line 0255 - 70000: Decline
+04th Apr 2013 - 13:58:56 BST - 1 - ABAPI - Line 0255 - 70000: Decline
+04th Apr 2013 - 14:07:29 BST - 1 - ABAPI - Line 0255 - 70000: Decline
+04th Apr 2013 - 15:28:18 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+04th Apr 2013 - 15:28:36 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+04th Apr 2013 - 15:28:56 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+04th Apr 2013 - 16:15:42 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+04th Apr 2013 - 16:15:57 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+04th Apr 2013 - 17:13:51 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+04th Apr 2013 - 17:15:56 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+04th Apr 2013 - 17:17:00 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 09:33:52 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 09:34:23 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 09:35:22 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 09:36:27 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 09:36:36 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 09:36:57 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 09:37:17 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 09:37:37 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 09:39:16 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 09:39:44 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 09:39:57 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 09:41:47 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 09:41:50 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 09:41:59 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 09:44:36 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 09:45:11 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 09:45:14 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 09:45:25 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 09:45:58 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 09:46:38 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 09:46:57 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 09:47:28 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 09:47:37 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 09:47:50 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 09:58:13 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 09:58:31 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 09:59:15 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 09:59:25 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 09:59:39 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 09:59:56 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 10:00:21 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 10:00:34 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 10:00:58 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 10:01:04 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 10:01:33 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 10:01:46 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 10:02:42 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 10:02:49 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 10:02:55 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 10:03:05 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 10:05:04 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 10:05:08 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 10:05:16 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 10:05:27 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 10:05:47 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 10:06:00 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 10:06:44 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 10:07:17 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 10:07:59 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 10:08:08 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 10:08:14 BST - 2 - ABAPI - Line 0572 - 00000: Invalid data value given. Be sure it matches the required data type and format.
+05th Apr 2013 - 10:29:27 BST - 2 - ABAPI - Line 0572 - 00000: Missing bundle property on entity of type commerce_order.
+05th Apr 2013 - 14:04:48 BST - 1 - ABAPI - Line 0255 - 70000: Decline
+05th Apr 2013 - 14:34:19 BST - 1 - ABAPI - Line 0255 - 70000: Decline
+05th Apr 2013 - 14:38:40 BST - 1 - ABAPI - Line 0255 - 70000: Decline
+05th Apr 2013 - 14:40:36 BST - 1 - ABAPI - Line 0255 - 70000: Decline
+05th Apr 2013 - 14:40:41 BST - 1 - ABAPI - Line 0255 - 70000: Decline
+05th Apr 2013 - 14:40:44 BST - 1 - ABAPI - Line 0255 - 70000: Decline
+05th Apr 2013 - 14:44:18 BST - 1 - ABAPI - Line 0255 - 70000: Decline
+05th Apr 2013 - 14:44:53 BST - 1 - ABAPI - Line 0255 - 70000: Decline
+05th Apr 2013 - 14:44:57 BST - 1 - ABAPI - Line 0255 - 70000: Decline
+05th Apr 2013 - 14:56:22 BST - 2 - ABAPI - Line 0572 - 00000: Missing bundle property on entity of type commerce_payment_transaction.
+05th Apr 2013 - 14:57:05 BST - 2 - ABAPI - Line 0572 - 00000: Missing bundle property on entity of type commerce_payment_transaction.
+05th Apr 2013 - 14:57:19 BST - 2 - ABAPI - Line 0572 - 00000: Missing bundle property on entity of type commerce_payment_transaction.
+05th Apr 2013 - 14:57:35 BST - 2 - ABAPI - Line 0572 - 00000: Missing bundle property on entity of type commerce_payment_transaction.
+05th Apr 2013 - 14:58:07 BST - 2 - ABAPI - Line 0572 - 00000: Missing bundle property on entity of type commerce_payment_transaction.
+05th Apr 2013 - 14:58:14 BST - 2 - ABAPI - Line 0572 - 00000: Missing bundle property on entity of type commerce_payment_transaction.
+05th Apr 2013 - 14:58:29 BST - 2 - ABAPI - Line 0572 - 00000: Missing bundle property on entity of type commerce_payment_transaction.
+05th Apr 2013 - 14:58:38 BST - 2 - ABAPI - Line 0572 - 00000: Missing bundle property on entity of type commerce_payment_transaction.
+05th Apr 2013 - 14:59:14 BST - 2 - ABAPI - Line 0572 - 00000: Missing bundle property on entity of type commerce_payment_transaction.
+05th Apr 2013 - 15:20:01 BST - 1 - ABAPI - Line 0255 - 70000: Decline
+05th Apr 2013 - 15:20:23 BST - 1 - ABAPI - Line 0255 - 70000: Decline
+05th Apr 2013 - 15:20:36 BST - 1 - ABAPI - Line 0255 - 70000: Decline
+05th Apr 2013 - 15:21:56 BST - 1 - ABAPI - Line 0255 - 70000: Decline
+05th Apr 2013 - 15:22:05 BST - 1 - ABAPI - Line 0255 - 70000: Decline
