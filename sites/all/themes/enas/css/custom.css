@@ -37,6 +37,54 @@ p {
 	font-size: 13px;
 	line-height: 1.5;
 }
+h1, h2, h3, h4, h5, h6 {
+	font-family: Berthold, Arial, sans-serif;
+}
+h1 {
+	font-size: 24px;
+}
+h2 {
+	font-size: 20px;
+}
+h3 {
+	font-size: 17px;
+}
+h4 {
+	font-size: 15px;
+}
+h5 {
+	font-size: 14px;
+}
+button, .button {
+	padding: 6px;
+	color: #fff;
+	background-color: #575756;
+	font-size: 12px;
+	font-family: "Proxima Nova Semibold", Arial, sans-serif;
+	border-width: 0px;
+	border-style: none;
+	border-color: #575756;
+	font-weight: normal;
+}
+button:hover, .button:hover {
+	background-color: #000;
+}
+ul.button-group {
+	margin-bottom: 8px;
+}
+ul.button-group li a {
+	display: block;
+	padding: 4px 8px;
+	color: #fff;
+	background-color: #3D3D3A;
+	font-family: "Berthold", Arial, sans-serif;
+	font-weight: normal;
+	font-size: 12px;
+	text-transform: uppercase;
+}
+ul.button-group li a:hover {
+	text-decoration: none;
+}
 header {
 	background-color: #EDEDED;
 }
@@ -50,6 +98,9 @@ header section.row nav {
 header section {
 	padding: 0 15px;
 }
+
+/* Main nav menu */
+
 #main-menu-links li a {
 	color: #000;
 }
@@ -99,6 +150,9 @@ header section {
 ul#main-menu-links {
 	margin-left: 0;
 }
+
+/* Breadcrumbs */
+
 .breadcrumbs {
 	margin: 0 15px 20px 15px;
 	padding: 4px 0;
@@ -120,36 +174,21 @@ ul#main-menu-links {
 .breadcrumbs > * a, .breadcrumbs > * span {
 	color: #000;
 }
-h1, h2, h3, h4, h5, h6 {
-	font-family: Berthold, Arial, sans-serif;
-}
-h1 {
-	font-size: 24px;
-}
-h2 {
-	font-size: 20px;
-}
-h3 {
-	font-size: 17px;
-}
-h4 {
-	font-size: 15px;
-}
-h5 {
-	font-size: 14px;
-}
-.sidebar {
+
+/* Right sidebar and misc. blocks */
+
+aside.sidebar-second {
 	margin-top: 50px;
 }
-.sidebar section {
+aside.sidebar-second section {
 	padding: 15px;
 	background-color: #DADADA;
 	font-family: "Proxima Nova Semibold", Arial, sans-serif;
 }
-.sidebar section.block-mailchimp-lists form {
+aside.sidebar-second section.block-mailchimp-lists form {
 	margin-bottom: 0px;
 }
-.sidebar section.block-mailchimp-lists form #edit-submit {
+aside.sidebar-second section.block-mailchimp-lists form #edit-submit {
 	margin-bottom: 0;
 	float: right;
 }
@@ -164,19 +203,9 @@ h5 {
 	font-size: 16px;
 	font-family: "Proxima Nova Semibold", Arial, sans-serif;
 }
-button, .button {
-	padding: 6px;
-	color: #fff;
-	background-color: #575756;
-	font-size: 12px;
-	font-family: "Proxima Nova Semibold", Arial, sans-serif;
-	border-width: 0px;
-	border-style: none;
-	border-color: #575756;
-}
-button:hover, .button:hover {
-	background-color: #000;
-}
+
+/* Footer and footer menu */
+
 footer.row {
 	max-width: 100%;
 	color: #fff;
@@ -249,6 +278,9 @@ footer.row .footer .block-menu-menu-footer-menu {
 header {
 	position: relative;
 }
+
+/* Header user menu */
+
 .siteheader {
 	float: right;
 	text-align: right;
@@ -304,4 +336,186 @@ header .block-system-user-menu {
 	color: #fff;
 	text-transform: uppercase;
 	padding: 0px 8px;
+}
+
+/* Exposed Filters */
+
+.sidebar .views-exposed-form .views-exposed-widget > label {
+	text-transform: uppercase;
+	font-family: "Proxima Nova Semibold", Arial, sans-serif;
+	margin-bottom: 8px;
+	font-weight: normal;
+	font-size: 14px;
+}
+.form-type-bef-link {
+	display: inline-block;
+	float: right;
+	text-transform: uppercase;
+	background: #9D9D9C;
+	padding: 4px 5px;
+	color: #000;
+	font-size: 12px;
+	margin-right: 5px;
+}
+.form-type-bef-link.selected, .form-type-bef-link:hover {
+	background: #C6C6C6;
+}
+.form-type-bef-link > a {
+	color: #000;
+}
+.form-type-bef-link.selected-edit-field-studio-type-tid-all, 
+.form-type-bef-link.form-item-edit-field-studio-type-tid-all {
+	background: #E6E8E6;
+	margin-right: 0px;
+}
+.sidebar #edit-keys-wrapper {
+	width: 100%;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+.sidebar #views-exposed-form-studios-page #edit-keys-wrapper {
+	margin-top: 20px;
+}
+.sidebar .views-exposed-form .views-exposed-widget .form-submit {
+	margin-top: 0px;
+}
+.sidebar .views-exposed-form .views-exposed-widget {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+/* List Views */
+
+.views-row {
+	float: left;
+	clear: left;
+	width: 100%;
+	margin-bottom: 15px;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #EDEDED;
+}
+
+.view-studios .views-row .views-field-field-image,
+.view-artists .views-row .views-field-picture {
+	float: left;
+	width: auto;
+}
+.view-studios .views-row .views-field-title,
+.view-artists .views-row .views-field-name {
+	margin-left: 170px;
+	width: 100%;
+	max-width: 300px;
+	font-family: "Proxima Nova Semibold", Arial, sans-serif;
+	font-weight: normal;
+	color: #000;
+	margin-bottom: 5px;
+	font-size: 20px;
+}
+.view-studios .views-row .views-field-title a,
+.view-artists .views-row .views-field-name a {
+	color: #000;
+}
+.view-studios .views-row .views-field-body,
+.view-artists .views-row .views-field-field-about-the-artist {
+	margin-left: 170px;
+	width: 100%;
+	max-width: 300px;
+	font-size: 13px;
+	line-height: 1.5;
+}
+.view-artists .views-row .views-field-field-about-the-artist {
+	max-width: 365px;
+}
+.view-studios .views-row .views-field-body p,
+.view-artists .views-row .views-field-field-about-the-artist p {
+	margin-bottom: 4px;
+}
+.view-studios .views-row .views-field-address,
+.view-artists .views-row .views-field-og-user-node {
+	margin-left: 170px;
+	width: 100%;
+	max-width: 300px;
+}
+.vcard,
+.view-artists .views-row .views-field-og-user-node .views-label,
+.view-artists .views-row .views-field-og-user-node .field-content {
+	display: inline;
+	border: 0px none;
+	padding: 0px 0px 0px 0px;
+	font-size: 12px;
+	line-height: 1.2;
+	font-family: "Proxima Nova Semibold", Arial, sans-serif;
+	margin-bottom: 0;
+}
+.view-artists .views-row .views-field-og-user-node .views-label {
+	font-family: "Proxima Nova", Arial, sans-serif;
+}
+.view-artists .views-row .views-field-og-user-node .field-content a {
+	color: #000;
+}
+.vcard div {
+	display: inline;
+}
+.vcard .fn {
+	font-weight: normal;
+}
+/*
+.vcard .adr > div:after, .vcard .adr > span:after {
+	content: ", ";
+}
+.vcard .adr > div:last-child:after, .vcard .adr > span:last-child:after {
+	content: "";
+}
+*/
+.view-studios .views-field-php {
+	float: right;
+	width: 65px;
+}
+.view-studios .views-field-view-node,
+.view-artists .views-field-view-user {
+	float: right;
+	width: 80px;
+	color: #fff;
+	text-transform: uppercase;
+	font-family: "Proxima Nova Semibold", Arial, sans-serif;
+	margin-left: 60px;
+	font-size: 12px;
+	margin-top: 36px;
+}
+
+.view-studios .views-field-view-node a,
+.view-artists .views-field-view-user a {
+	color: #fff;
+	padding: 5px 40px 5px 5px;
+	display: block;
+	background: #3D3D3A url('../images/caret.png') no-repeat 60px 50%;
+}
+.view-studios .views-field-view-node a:hover,
+.view-artists .views-field-view-user a:hover {
+	text-decoration: none;
+}
+.view-studios .views-field-php .views-label {
+	color: #CCC;
+	text-transform: uppercase;
+	font-family: "Proxima Nova Semibold", Arial, sans-serif;	
+	font-weight: normal;
+	font-size: 10px;
+	text-align: center;
+}
+.view-studios .views-field-php .field-content {
+	display: block;
+	width: 50px;
+	height: 50px;
+	border-radius: 25px;
+	border-width: 0;
+	font-size: 24px;
+	font-family: "Berthold", Arial, sans-serif;
+	font-weight: bold;
+	text-align: center;
+	padding: 13px 0;
+	background-color: #DADADA;
+	margin-top: 12px;
+}
+.page-studios h1#page-title, .page-artists h1#page-title {
+	display: none;
 }
