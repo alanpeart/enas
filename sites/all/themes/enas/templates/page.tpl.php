@@ -28,7 +28,7 @@
 	  
     <?php if (!empty($page['header'])): ?>
       <!--.l-header-region -->
-        <div class="large-8 columns siteheader">
+        <div class="large-6 columns siteheader">
           <?php print render($page['header']); ?>
         </div>
       <!--/.l-header-region -->
@@ -202,12 +202,10 @@
       </div>
     <?php endif; ?>
 
-    <?php if ($site_name) :?>
       <div class="copyright large-12 columns">
         &copy; <?php print date('Y') . ' ' . check_plain($site_name) . ' ' . t('All rights reserved.'); ?>
 		<div class="right">Designed by <a href="http://creative.coop" title="Creative.Coop" target="_new">Creative Coop</a></div>
       </div>
-    <?php endif; ?>
   </footer>
   <!--/.footer-->
 

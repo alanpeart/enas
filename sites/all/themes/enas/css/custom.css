@@ -92,10 +92,13 @@ img.logo {
 	margin-top: 35px;
 	margin-bottom: 35px;
 }
+header section.row {
+	padding: 0 15px;
+}
 header section.row nav {
 	color: #000;
 }
-header section {
+header section#menubar {
 	padding: 0 15px;
 }
 
@@ -107,7 +110,7 @@ header section {
 #menubar nav {
 	max-width: 62.5em;
 	margin: 0 auto 15px auto;
-	padding: 0 15px;
+	padding: 0px 0px;
 }
 #menubar .contain-to-grid {
 	background-color: #C6C6C6;
@@ -130,14 +133,20 @@ header section {
 #menubar nav li {
 	margin: 0;
 }
+ul#main-menu {
+	width: 100%;
+}
+ul#main-menu > li {
+	width: 14.28%;
+}
 #menubar nav li a {
 	font-family: Berthold, Arial, sans-serif;
 	text-transform: uppercase;
 	font-weight: bold;
 	font-size: 12px;
 	color: #000;
-	padding-left: 40px;
-	padding-right: 40px;
+	display: block;
+	text-align: center;
 }
 #menubar nav li li {
 	
@@ -166,6 +175,9 @@ ul#main-menu-links {
 	-moz-border-radius: 0px;
 	-webkit-border-radius: 0px;
 	border-radius: 0px;
+	float: left;
+	clear: left;
+	width: 100%;
 }
 .breadcrumbs > * {
 	font-size: 10px;
@@ -518,4 +530,35 @@ header .block-system-user-menu {
 }
 .page-studios h1#page-title, .page-artists h1#page-title {
 	display: none;
+}
+
+@media only screen and (max-width: 55em) {
+  /* line 362, ../../../../../../../../../../var/lib/gems/1.8/gems/zurb-foundation-4.3.1/scss/foundation/components/_top-bar.scss */
+  .top-bar {
+    *zoom: 1;
+    overflow: visible;
+  }
+	header section#menubar {
+		padding: 0px 0px;
+	}
+	header section#menubar {
+		padding: 0px 0px;
+	}
+	header .large-6.columns {
+		max-width: 280px;
+	}
+	footer.row .copyright,
+	footer.row .footer {
+		padding: 12px 15px;
+	}
+	ul#main-menu > li {
+		height: 30px;
+		line-height: 30px;
+		width: auto;
+	}
+	.top-bar-section ul li > a {
+		padding-top: 0;
+		padding-bottom: 0;
+		padding-right: 40px;
+	}
 }
