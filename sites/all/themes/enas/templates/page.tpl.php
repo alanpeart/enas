@@ -134,6 +134,8 @@
       <?php endif; ?>
 
       <?php print render($page['content']); ?>
+	  
+	  <?php print render($page['content_under']); ?>
     </div>
     <!--/.main region -->
 

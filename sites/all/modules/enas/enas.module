@@ -6,7 +6,13 @@
  */
 
 function enas_user_studio($uid) {
-	
+	$gid = 0;
+	$sql = "SELECT gid FROM `og_membership` where etid = ".$uid." AND entity_type = 'user' LIMIT 1";
+	$result = db_query($sql);
+	foreach($result as $row) {
+		$gid = $row->gid;
+	}
+	return $gid;
 }
 
 function enas_publish_studio_after_payment($uid) {
