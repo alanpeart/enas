@@ -387,6 +387,11 @@ header .block-system-user-menu {
 	padding-left: 0px;
 	padding-right: 0px;
 }
+.sidebar #edit-field-event-type-tid-wrapper {
+	width: 100%;
+	padding-left: 0px;
+	padding-right: 0px;
+}
 .sidebar #views-exposed-form-studios-page #edit-keys-wrapper {
 	margin-top: 20px;
 }
@@ -397,6 +402,7 @@ header .block-system-user-menu {
 	padding-left: 0px;
 	padding-right: 0px;
 }
+
 
 /* List Views */
 
@@ -976,6 +982,221 @@ aside.sidebar-second section.block-views-user-contact-details-block {
 }
 .view-artist-more-pictures .views-row.three {
 	margin-right: 0px;
+}
+.view-studios.view-display-id-page_1 {
+	margin-bottom: 40px;
+}
+.view-header {
+	border-bottom: 2px solid #818180;
+	width: 100%;
+	margin-bottom: 15px;
+	min-height: 25px;
+}
+a.tab-link {
+	color: #000;
+	text-transform: uppercase;
+	font-size: 12px;
+	background-color: #DADADA;
+	padding: 6px 25px;
+	margin-right: 5px;
+}
+a.tab-link.active, a.tab-link:hover {
+	color: #fff;
+	background-color: #9D9D9C;
+}
+.gmap-popup {
+	width: 300px;
+	max-width: 100%;
+}
+.gmap-popup .views-field-title {
+	font-size: 18px;
+	color: #000;
+	font-family: "Proxima Nova Semibold", Arial, sans-serif;
+	margin: 5px 0 10px 0;
+}
+.gmap-popup .views-field-title a {
+	color: #000;
+}
+.gmap-popup .views-field-image {
+	float: right;
+	width: auto;
+	height: auto;
+	margin: 0 0 15px 15px;
+}
+.gmap-popup .vcard {
+	text-align: left;
+	font-family: "Proxima Nova", Arial, sans-serif;
+}
+.gmap-popup .telephone {
+	margin: 5px 0;
+	font-family: "Proxima Nova Semibold", Arial, sans-serif;
+}
+.gmap-popup p {
+	margin-bottom: 3px;
+	font-size: 12px;
+}
+.gmap-popup .website a {
+	color: #000;
+}
+.view-events {
+	margin-bottom: 40px;
+}
+.page-events-list h1#page-title {
+	display: none;
+}
+.view-events-list .views-field-view-node {
+	float: right;
+	width: 80px;
+	color: #fff;
+	text-transform: uppercase;
+	font-family: "Proxima Nova Semibold", Arial, sans-serif;
+	margin-left: 40px;
+	font-size: 12px;
+	margin-top: 36px;
+}
+.view-events-list .views-field-view-node a {
+	color: #fff;
+	padding: 5px 40px 5px 5px;
+	display: block;
+	background: #3D3D3A url('../images/caret.png') no-repeat 60px 50%;
+}
+.view-events-list .views-field-field-image {
+	float: left;
+	width: auto;
+	min-height: 100%;
+	margin-right: 20px;
+}
+.view-events-list .views-row .views-field-title {
+	display: inline;
+	font-family: "Proxima Nova Semibold", Arial, sans-serif;
+	font-weight: normal;
+	color: #000;
+	font-size: 20px;
+}
+.view-events-list .views-field-title a {
+	color: #000;
+}
+.view-events-list .views-field-field-date {
+	font-size: 20px;
+	font-family: "Proxima Nova Semibold", Arial, sans-serif;
+	font-weight: normal;
+	color: #919191;
+	margin-left: 5px;
+}
+.view-events-list .views-row .views-field-body {
+	margin-left: 150px;
+	width: 100%;
+	font-size: 12px;
+	line-height: 1.5;
+	margin-top: 10px;
+}
+.view-events-list .views-row .views-field-body p {
+	font-size: 12px;
+	line-height: 1.5;
+}
+.view-events-list .views-field-name {
+	font-family: "Proxima Nova Semibold", Arial, sans-serif;
+	font-size: 12px;
+	display: inline;
+}
+.view-events-list .views-field-field-tags {
+	margin-left: 5px;
+}
+.view-events-list .views-field-field-tags,
+.view-events-list .views-field-field-tags div,
+.view-events-list .views-field-field-tags ul,
+.view-events-list .views-field-field-tags ul li {
+	display: inline;
+}
+.view-events-list .views-field-field-tags ul li {
+	list-style-type: none;
+	font-family: "Proxima Nova", Arial, sans-serif;
+	text-transform: uppercase;
+	padding: 2px 4px;
+	color: #fff;
+	background-color: #7F7F7F;
+	font-size: 11px;
+	margin: 0 4px 0 0;
+}
+.attachment .view-events-list .views-field-name {
+	display: block;
+	margin-top: 10px;
+}
+.attachment .view-events-list .views-field-field-tags {
+	display: block;
+}
+.attachment .view-events-list .views-field-view-node {
+	margin-top: 10px;
+}
+.attachment .view-events-list .views-row .views-field-body {
+	margin-left: 0;
+}
+/* Single Event */
+.node-type-event h1#page-title {
+	display: none;
+}
+span.event-date {
+	color: #A7A7A7;
+	margin-left: 10px;
+}
+span.event-date div {
+	display: inline;
+}
+.node-type-event article .body {
+	margin-top: 20px;
+	margin-bottom: 30px;
+}
+.view-event-contact-details .views-label {
+	text-transform: uppercase;
+	font-family: "Proxima Nova Semibold", Arial, sans-serif;
+	margin-bottom: 8px;
+	font-weight: normal;
+	font-size: 13px;
+	display: block;
+}
+.view-event-contact-details .views-row {
+	margin-bottom: 0;
+	border-bottom: 0;
+	padding-bottom: 0;
+}
+.view-event-contact-details .vcard {
+	font-family: "Proxima Nova", Arial, sans-serif;
+}
+.view-event-contact-details .vcard .adr .street-address,
+.view-event-contact-details .vcard .adr .postal-code,
+.view-event-contact-details .vcard .map-link {
+	display: block;
+}
+.view-event-contact-details .views-field-field-telephone {
+	font-size: 12px;
+	color: #000;
+}
+.view-event-contact-details .views-field-field-tags div,
+.view-event-contact-details .views-field-field-tags ul,
+.view-event-contact-details .views-field-field-tags ul li {
+	display: inline;
+}
+.view-event-contact-details .views-field-field-tags ul li {
+	list-style-type: none;
+	font-family: "Proxima Nova", Arial, sans-serif;
+	text-transform: uppercase;
+	padding: 2px 4px;
+	color: #fff;
+	background-color: #7F7F7F;
+	font-size: 11px;
+	margin: 0 4px 0 0;
+}
+.views-field-field-event-organiser .field-content,
+.views-field-field-name .field-content {
+	font-size: 12px;
+}
+.views-field-field-event-organiser,
+.view-event-contact-details .views-field-field-tags,
+.view-event-contact-details .views-field-field-location,
+.view-event-contact-details .views-field-field-telephone {
+	margin-bottom: 20px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #BABABA;
 }
 
 @media only screen and (max-width: 55em) {
