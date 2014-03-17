@@ -6,6 +6,13 @@
 	font-style: normal;
 }
 @font-face {
+	font-family: 'Berthold Med';
+	src: url('bagbem.eot');
+	src: local('?'), url('bagbem.woff') format('woff'), url('bagbem.ttf') format('truetype'), url('bagbem.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
 	font-family: 'Proxima Nova';
 	src: url('pnreg.eot');
 	src: local('?'), url('pnreg.woff') format('woff'), url('pnreg.ttf') format('truetype'), url('pnreg.svg') format('svg');
@@ -88,14 +95,23 @@ ul.button-group li a:hover {
 }
 header {
 	background-color: #EDEDED;
+	background-image:url(../images/top_banner.jpg);
+	background-repeat:no-repeat;
+	background-position:center center;
+	background-size:cover;
 }
 img.logo {
 	margin-top: 35px;
 	margin-bottom: 35px;
+	margin-left:0.938em;
+	width:102px;
+	height:102px;
 }
+/*
 header section.row {
 	padding: 0 15px;
 }
+*/
 header section.row nav {
 	color: #000;
 }
@@ -109,27 +125,28 @@ header section#menubar {
 	color: #000;
 }
 #menubar nav {
-	max-width: 62.5em;
+	max-width: 60.625em;
 	margin: 0 auto 15px auto;
 	padding: 0px 0px;
 }
 #menubar .contain-to-grid {
-	background-color: #C6C6C6;
+	background-color: #1D1D1B;
 }
 #menubar .top-bar {
-	height: 30px;
+	height: 33px;
 	line-height: 30px;
 }
 #menubar, .top-bar, .top-bar-section ul,
 .top-bar-section li, .top-bar-section li a,
 .top-bar-section li a:not(.button) {
-	background-color: #C6C6C6;
+	background-color: #1D1D1B;
 }
 .top-bar-section li a:not(.button) {
-	line-height: 30px;
+	line-height: 33px;
 }
 .top-bar-section .has-dropdown > a:after {
 	top: 15px;
+	display:none;
 }
 #menubar nav li {
 	margin: 0;
@@ -139,13 +156,18 @@ ul#main-menu {
 }
 ul#main-menu > li {
 	width: 14.28%;
+	border-left: solid 1px #706f6f;
+}
+
+ul#main-menu > li.last{
+	border-right: solid 1px #706f6f;
 }
 #menubar nav li a {
 	font-family: Berthold, Arial, sans-serif;
 	text-transform: uppercase;
-	font-weight: bold;
+	font-weight: 400;
 	font-size: 12px;
-	color: #000;
+	color: #FFFFFF;
 	display: block;
 	text-align: center;
 }
@@ -156,6 +178,7 @@ ul#main-menu > li {
 }
 #menubar nav li a:hover, #menubar nav li a.active {
 	background-color: #fff;
+	color: #1D1D1B;
 }
 ul#main-menu-links {
 	margin-left: 0;
@@ -164,7 +187,7 @@ ul#main-menu-links {
 /* Breadcrumbs */
 
 .breadcrumbs {
-	margin: 0 15px 20px 15px;
+	/*margin: 0 15px 20px 15px;*/
 	padding: 4px 0;
 	background-color: #fff;
 	border-left: 0px none;
@@ -191,11 +214,11 @@ ul#main-menu-links {
 /* Right sidebar and misc. blocks */
 
 aside.sidebar-second {
-	margin-top: 50px;
+	margin-top: 65px;
 }
 aside.sidebar-second section {
 	padding: 15px;
-	background-color: #EDEDED;
+	background-color: #F0F6FE;
 	font-family: "Proxima Nova Semibold", Arial, sans-serif;
 	margin-bottom: 15px;
 }
@@ -303,7 +326,7 @@ header .block-system-user-menu {
 	width: 280px;
 	max-width: 280px;
 	float: right;
-	margin-top: 30px;
+	margin-top: 35px;
 	padding: 0;
 }
 .block-system-user-menu ul.menu {
@@ -325,7 +348,7 @@ header .block-system-user-menu {
 	display: block;
 	color: #000;
 	height: 24px;
-	line-height: 24px;
+	line-height: 26px;
 }
 .block-system-user-menu ul.menu li.facebook a {
 	font-size: 0px;
@@ -335,6 +358,7 @@ header .block-system-user-menu {
 	width: 24px;
 	height: 24px;
 	background: transparent url('../images/facebook.png') no-repeat 0px 0px;
+	background-size:cover;
 }
 .block-system-user-menu ul.menu li.twitter a {
 	font-size: 0px;
@@ -344,9 +368,10 @@ header .block-system-user-menu {
 	width: 24px;
 	height: 24px;
 	background: transparent url('../images/twitter.png') no-repeat 0px 0px;
+	background-size:cover;
 }
 .block-system-user-menu ul.menu li.join-us a {
-	background-color: #383836;
+	background-color: #7CE953;
 	color: #fff;
 	text-transform: uppercase;
 	padding: 0px 8px;
@@ -360,22 +385,32 @@ header .block-system-user-menu {
 	margin-bottom: 8px;
 	font-weight: normal;
 	font-size: 14px;
+	color: #706f6f;
 }
 .form-type-bef-link {
 	display: inline-block;
 	float: right;
 	text-transform: uppercase;
-	background: #9D9D9C;
-	padding: 4px 5px;
+	background: #dadada;
+	padding: 0px 9px;
 	color: #000;
 	font-size: 12px;
 	margin-right: 5px;
+	color:#1d1d1b;
 }
-.form-type-bef-link.selected, .form-type-bef-link:hover {
-	background: #C6C6C6;
+.form-type-bef-link.selected {
+	background: #1d1d1b;
+	color:#FFF;
 }
+
+.form-type-bef-link.selected a {
+	color: #FFF;
+}
+
 .form-type-bef-link > a {
-	color: #000;
+	color: #1d1d1b;
+	font-size:11px;
+	line-height:25px;
 }
 .form-type-bef-link.selected-edit-field-studio-type-tid-all, 
 .form-type-bef-link.form-item-edit-field-studio-type-tid-all {
@@ -386,6 +421,7 @@ header .block-system-user-menu {
 	width: 100%;
 	padding-left: 0px;
 	padding-right: 0px;
+	margin-top:30px;
 }
 .sidebar #edit-field-event-type-tid-wrapper {
 	width: 100%;
@@ -401,6 +437,7 @@ header .block-system-user-menu {
 .sidebar .views-exposed-form .views-exposed-widget {
 	padding-left: 0px;
 	padding-right: 0px;
+	padding-top:0px;
 }
 
 
@@ -413,6 +450,10 @@ header .block-system-user-menu {
 	margin-bottom: 15px;
 	padding-bottom: 15px;
 	border-bottom: 1px solid #EDEDED;
+}
+
+.views-row:first-child {
+	margin-top:3px;
 }
 
 .view-studios .views-row .views-field-field-image,
@@ -650,6 +691,7 @@ header .block-system-user-menu {
 	display: block;
 	float: left;
 	text-indent: -9999px;
+	background-size:cover;
 }
 .views-field-field-facebook-page a {
 	font-size: 0px;
@@ -662,6 +704,7 @@ header .block-system-user-menu {
 	float: left;
 	margin-right: 6px;
 	background: transparent url('../images/facebook.png') no-repeat 0px 0px;
+	background-size:cover;
 }
 .views-field-field-twitter-handle a {
 	font-size: 0px;
@@ -674,6 +717,7 @@ header .block-system-user-menu {
 	display: block;
 	float: left;
 	background: transparent url('../images/twitter.png') no-repeat 0px 0px;
+	background-size:cover;
 }
 .view-studio-contact-details.view-display-id-block_1 {
 	float: left;
@@ -917,7 +961,7 @@ main h2.block-title {
 	line-height: 1.5;
 }
 aside.sidebar-second section.block-views-user-contact-details-block {
-	background-color: #C6C6C6;
+	background-color: #E8FBE0;
 }
 .view-user-contact-details .views-field-field-photo {
 	margin-bottom: 15px;
@@ -1198,6 +1242,26 @@ span.event-date div {
 	padding-bottom: 20px;
 	border-bottom: 1px solid #BABABA;
 }
+
+.item-list .pager {
+	clear: both;
+	text-align: right;
+}
+
+.item-list .pager li {
+ 	padding: 0em; 
+ 	margin: 0 0 0.25em 0.5em;
+}
+
+body > div.page > main > aside {
+	padding-left:0;
+}
+
+.profile .user-picture {
+	float: right;
+	margin: 0;
+}
+
 
 @media only screen and (max-width: 55em) {
   /* line 362, ../../../../../../../../../../var/lib/gems/1.8/gems/zurb-foundation-4.3.1/scss/foundation/components/_top-bar.scss */

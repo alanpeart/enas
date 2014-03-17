@@ -1,0 +1,38 @@
+/* Featured / Slider section */
+
+section.l-featured.row {
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+	max-height: 600px;
+	overflow: hidden;
+}
+section.l-featured.row .flexslider {
+	margin: 0;
+	border: 0px none;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+	box-shadow: 0px 0px 0px transparent;
+}
+section.l-featured.row .flexslider .slides img {
+	
+}
+li.flexslider_views_slideshow_slide {
+	position: relative;
+}
+li.flexslider_views_slideshow_slide .views-field-title {
+	position: absolute;
+	bottom: 35px;
+	left: 10%;
+	width: 40%;
+	padding: 28px 24px;
+	background-color: #4A4A4A;
+	color: #fff;
+	font-size: 24px;
+	font-family: "Proxima Nova Semibold", Arial, sans-serif;
+	font-weight: normal;
+	z-index: 10;
+}
+.front #menubar nav {
+	margin-bottom: 0px;
+}
