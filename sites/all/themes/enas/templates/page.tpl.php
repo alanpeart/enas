@@ -78,9 +78,7 @@
   <?php if (!empty($page['featured'])): ?>
     <!--/.featured -->
     <section class="l-featured row">
-      <div class="large-12 columns">
         <?php print render($page['featured']); ?>
-      </div>
     </section>
     <!--/.l-featured -->
   <?php endif; ?>
@@ -106,7 +104,11 @@
   <?php endif; ?>
 
   <main role="main" class="row l-main">
-  <?php if ($breadcrumb): print $breadcrumb; endif; ?>
+  <?php if ($breadcrumb) : ?>
+	<div class="large-12 columns">
+	<?php print $breadcrumb; ?>
+	</div>
+	<?php endif; ?>
     <div class="<?php print $main_grid; ?> main columns">
       <?php if (!empty($page['highlighted'])): ?>
         <div class="highlight panel callout">
