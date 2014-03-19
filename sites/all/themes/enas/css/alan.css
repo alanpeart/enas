@@ -1,0 +1,22 @@
+.view-news.view-display-id-page .view-content .views-row {
+	width: 230px;
+	padding-right: 15px;
+}
+#views-exposed-form-news-page .form-item-uid .description {
+	display: none;
+}
+html.js input.form-autocomplete {
+	padding: 0.25em;
+	height: 1.5em;
+}
+aside .bef-checkboxes .form-item {
+	display: block;
+	width: 100%;
+}
+li.flag-bookmarks {
+	display: none;
+}
+.view-related-news .view-content .views-row {
+	width: 230px;
+	padding-right: 15px;
+}

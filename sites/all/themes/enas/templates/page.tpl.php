@@ -207,8 +207,8 @@
     <?php endif; ?>
 
       <div class="copyright large-12 columns">
-        &copy; <?php print date('Y') . ' ' . check_plain($site_name) . ' ' . t('All rights reserved.'); ?>
-		<div class="right">Designed by <a href="http://creative.coop" title="Creative.Coop" target="_new">Creative Coop</a></div>
+        <a href="terms" title="Terms">Terms</a> | &copy; <?php print date('Y') . ' ' . 'Essex Network of Artist Studios'; ?>
+		<span>Designed by <a href="http://creative.coop" title="Creative.Coop" target="_new">Creative Coop</a></span>
       </div>
   </footer>
   <!--/.footer-->

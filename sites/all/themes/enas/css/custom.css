@@ -1,4 +1,4 @@
-@font-face {
+/*@font-face {
 	font-family: 'Berthold';
 	src: url('bagber.eot');
 	src: local('?'), url('bagber.woff') format('woff'), url('bagber.ttf') format('truetype'), url('bagber.svg') format('svg');
@@ -12,6 +12,7 @@
 	font-weight: normal;
 	font-style: normal;
 }
+*/
 @font-face {
 	font-family: 'Proxima Nova';
 	src: url('pnreg.eot');
@@ -27,8 +28,11 @@
 	font-style: normal;
 }/* CSS Document */
 
+/* To use Typekit Berthold fonts use font-family "akzidenz-grotesk" with weight 400 or 500 */
+
 a {
-	font-family: "Berthold Med", Arial, sans-serif;
+	font-family: "akzidenz-grotesk", Arial, sans-serif;
+	font-weight: 500;
     -webkit-transition: opacity 300ms, -moz-opacity 300ms;
     transition: opacity 300ms, -moz-opacity 300ms;
 }
@@ -38,7 +42,8 @@ a:hover {
 	opacity: 0.8;
 }
 body {
-	font-family: 'Berthold', Arial, sans-serif;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
+	font-weight: 400;
 	color: #1D1D1B;
 }
 p {
@@ -47,9 +52,9 @@ p {
 	color: #666;
 }
 h1, h2, h3, h4, h5, h6 {
-	font-family: "Berthold Med", Arial, sans-serif;
+	font-family: "akzidenz-grotesk", Arial, sans-serif;
 	line-height:1.2em;
-	font-weight:400;
+	font-weight:500;
 }
 h1 {
 	font-size: 32px;
@@ -71,11 +76,11 @@ button, .button {
 	color: #fff;
 	background-color: #575756;
 	font-size: 12px;
-	font-family: "Berthold", Arial, sans-serif;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
 	border-width: 0px;
 	border-style: none;
 	border-color: #575756;
-	font-weight: normal;
+	font-weight: 400;
 }
 button:hover, .button:hover {
 	background-color: #1D1D1B;
@@ -88,8 +93,8 @@ ul.button-group li a {
 	padding: 4px 8px;
 	color: #fff;
 	background-color: #3D3D3A;
-	font-family: "Berthold", Arial, sans-serif;
-	font-weight: normal;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
+	font-weight: 400;
 	font-size: 12px;
 	text-transform: uppercase;
 }
@@ -166,7 +171,7 @@ ul#main-menu > li.last{
 	border-right: solid 1px #706f6f;
 }
 #menubar nav li a {
-	font-family: Berthold, Arial, sans-serif;
+	font-family: "akzidenz-grotesk", Arial, sans-serif;
 	text-transform: uppercase;
 	font-weight: 400;
 	font-size: 12px;
@@ -198,7 +203,8 @@ ul#main-menu-links {
 	border-top: 1px solid #F1F1F1;
 	border-bottom: 1px solid #F1F1F1;
 	font-size: 10px;
-	font-family: Berthold, Arial, sans-serif;
+	font-family: "akzidenz-grotesk", Arial, sans-serif;
+	font-weight: 400;
 	-moz-border-radius: 0px;
 	-webkit-border-radius: 0px;
 	border-radius: 0px;
@@ -209,11 +215,13 @@ ul#main-menu-links {
 .breadcrumbs > * {
 	font-size: 9px;
 	color: #1D1D1B;
-	font-family: "Berthold", Arial, sans-serif;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
+	font-weight: 400;
 }
 .breadcrumbs > * a, .breadcrumbs > * span {
 	color: #1D1D1B;
-	font-family: "Berthold", Arial, sans-serif;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
+	font-weight: 400;
 }
 
 /* Right sidebar and misc. blocks */
@@ -224,8 +232,9 @@ aside.sidebar-second {
 aside.sidebar-second section {
 	padding: 22px;
 	background-color: #F0F6FE;
-	font-family: "Berthold", Arial, sans-serif;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
 	margin-bottom: 20px;
+	font-weight: 400;
 }
 aside.sidebar-second section.block-mailchimp-lists form {
 	margin-bottom: 0px;
@@ -243,7 +252,8 @@ aside.sidebar-second section.block-mailchimp-lists form #edit-submit {
 }
 .field-name-field-intro, .field-name-field-intro p {
 	font-size: 16px;
-	font-family: "Berthold", Arial, sans-serif;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
+	font-weight: 400;
 }
 
 /* Footer and footer menu */
@@ -252,12 +262,13 @@ footer.row {
 	max-width: 100%;
 	color: #fff;
 	font-size: 12px;
-	background-color: #706F6F;
+	background-color: #1D1D1B;
 	margin-bottom: 0px;
 	padding: 0;
+	border:none;
 }
 footer.row a {
-	color: #fff;
+	color:#1D1D1B;
 }
 footer.row .copyright {
 	max-width: 960px;
@@ -281,11 +292,22 @@ footer.row .footer {
 	color: #1D1D1B;
 	overflow: hidden;
 }
+
 footer.row .footer .block-menu-menu-footer-menu {
 	max-width: 960px;
 	margin: 0 auto;
 	overflow: hidden;
 }
+
+.block-panels-mini-fat-footer {
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0;
+	margin-bottom: 0;
+	max-width: 970px;
+}
+
 .block-menu-menu-footer-menu > ul.menu {
 	margin: 20px 0 30px 0;
 	padding: 0;
@@ -296,8 +318,9 @@ footer.row .footer .block-menu-menu-footer-menu {
 	list-style-type: none;
 	float: left;
 	margin-right: 40px;
-	font-family: "Berthold", Arial, sans-serif;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
 	font-size: 14px;
+	font-weight: 400;
 }
 .block-menu-menu-footer-menu > ul.menu > li.expanded a {
 	padding-bottom: 15px;
@@ -310,8 +333,9 @@ footer.row .footer .block-menu-menu-footer-menu {
 	margin-left: 0;
 }
 .block-menu-menu-footer-menu > ul.menu li li a {
-	font-family: "Berthold", Arial, sans-serif;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
 	color: #1D1D1B;
+	font-weight: 400;
 }
 .block-menu-menu-footer-menu > ul.menu li li {
 	font-size: 12px;
@@ -345,9 +369,10 @@ header .block-system-user-menu {
 	list-style-type: none;
 	color: #1D1D1B;
 	font-size: 12px;
-	font-family: "Berthold", Arial, sans-serif;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
 	height: 24px;
 	line-height: 24px;
+	font-weight: 400;
 }
 .block-system-user-menu ul.menu li a {
 	display: block;
@@ -386,9 +411,9 @@ header .block-system-user-menu {
 
 .sidebar .views-exposed-form .views-exposed-widget > label {
 	text-transform: uppercase;
-	font-family: "Berthold", Arial, sans-serif;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
 	margin-bottom: 8px;
-	font-weight: normal;
+	font-weight: 400;
 	font-size: 14px;
 	color: #706f6f;
 }
@@ -452,7 +477,7 @@ header .block-system-user-menu {
 	float: left;
 	clear: left;
 	width: 100%;
-	margin-bottom: 15px;
+	margin-bottom: 20px;
 	padding-bottom: 15px;
 	border-bottom: 1px solid #EDEDED;
 }
@@ -460,6 +485,12 @@ header .block-system-user-menu {
 .views-row:first-child {
 	margin-top:3px;
 }
+
+.view-artists .views-row:first-child {
+	margin-top:15px;
+}
+
+
 
 .view-studios .views-row .views-field-field-image,
 .view-artists .views-row .views-field-picture {
@@ -471,11 +502,12 @@ header .block-system-user-menu {
 	margin-left: 170px;
 	width: 100%;
 	max-width: 300px;
-	font-family: "Berthold", Arial, sans-serif;
-	font-weight: normal;
+	font-family: "akzidenz-grotesk", Arial, sans-serif;
+	font-weight: 500;
 	color: #1D1D1B;
-	margin-bottom: 5px;
+	margin-bottom: 8px;
 	font-size: 20px;
+	line-height:0.8em;
 }
 .view-studios .views-row .views-field-title a,
 .view-artists .views-row .views-field-name a {
@@ -486,8 +518,9 @@ header .block-system-user-menu {
 	margin-left: 170px;
 	width: 100%;
 	max-width: 300px;
-	font-size: 13px;
-	line-height: 1.5;
+	font-size: 12px;
+	line-height: 1.75;
+	color:#706F6F;
 }
 .view-artists .views-row .views-field-field-about-the-artist {
 	max-width: 365px;
@@ -510,11 +543,13 @@ header .block-system-user-menu {
 	padding: 0px 0px 0px 0px;
 	font-size: 12px;
 	line-height: 1.2;
-	font-family: "Berthold", Arial, sans-serif;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
 	margin-bottom: 0;
+	font-weight: 400;
 }
 .view-artists .views-row .views-field-og-user-node .views-label {
-	font-family: "Berthold", Arial, sans-serif;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
+	font-weight: 400;
 }
 .view-artists .views-row .views-field-og-user-node .field-content a {
 	color: #1D1D1B;
@@ -544,10 +579,11 @@ header .block-system-user-menu {
 	width: 80px;
 	color: #fff;
 	text-transform: uppercase;
-	font-family: "Berthold", Arial, sans-serif;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
 	margin-left: 60px;
 	font-size: 12px;
-	margin-top: 36px;
+	margin-top: 25px;
+	font-weight: 400;
 }
 
 .view-studios .views-field-view-node a,
@@ -555,7 +591,10 @@ header .block-system-user-menu {
 	color: #fff;
 	padding: 5px 40px 5px 5px;
 	display: block;
-	background: #3D3D3A url('../images/caret.png') no-repeat 60px 50%;
+	background: #DADADA url('../images/caret.png') no-repeat 60px 50%;
+	font-size:10px;
+	color:#1D1D1B;
+	line-height:1.4em;
 }
 .view-studios .views-field-view-node a:hover,
 .view-artists .views-field-view-user a:hover {
@@ -564,8 +603,8 @@ header .block-system-user-menu {
 .view-studios .views-field-php .views-label {
 	color: #CCC;
 	text-transform: uppercase;
-	font-family: "Berthold", Arial, sans-serif;	
-	font-weight: normal;
+	font-family: "akzidenz-grotesk", Arial, sans-serif;
+	font-weight: 500;
 	font-size: 10px;
 	text-align: center;
 }
@@ -576,8 +615,8 @@ header .block-system-user-menu {
 	border-radius: 25px;
 	border-width: 0;
 	font-size: 24px;
-	font-family: "Berthold", Arial, sans-serif;
-	font-weight: bold;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
+	font-weight: 500;
 	text-align: center;
 	padding: 13px 0;
 	background-color: #EDEDED;
@@ -590,8 +629,8 @@ header .block-system-user-menu {
 /* Studio Detail Page */
 
 .node-studio .body {
-	font-family: "Berthold", Arial, sans-serif;
-	font-weight: normal;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
+	font-weight: 400;
 	font-size: 16px;
 	margin-bottom: 14px;
 	color: #1D1D1B;
@@ -610,8 +649,8 @@ header .block-system-user-menu {
 	line-height: 1.5;
 }
 .node-studio .field .field-label {
-	font-weight: normal;
-	font-family: "Berthold", Arial, sans-serif;
+	font-weight: 400;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
 	font-size: 13px;
 	margin-bottom: 5px;
 	color: #1D1D1B;
@@ -623,23 +662,24 @@ header .block-system-user-menu {
 	line-height: 1.5;
 }
 .views-field-field-studio-type {
-	margin-bottom: 20px;
-	padding-bottom: 20px;
-	border-bottom: 1px solid #BABABA;
+	margin-bottom: 17px;
+	padding-bottom: 22px;
+	border-bottom: 1px solid #8AB8FA;
+	margin-top:-6px;
 }
 .views-field-field-studio-type a {
 	text-transform: uppercase;
-	background: #9D9D9C;
+	background: #303231;
 	padding: 4px 5px;
-	color: #1D1D1B;
+	color: #FFFFFF !important;
 	font-size: 12px;
 }
 .views-field-field-studio-type a:hover {
 	background: #C6C6C6;
 }
 .view-studio-contact-details .views-field-name {
-	margin-bottom: 20px;
-	padding-bottom: 20px;
+	margin-bottom: 15px;
+	padding-bottom: 15px;
 	border-bottom: 1px solid #8AB8FA;
 }
 .view-studio-contact-details .views-field-name a {
@@ -648,28 +688,34 @@ header .block-system-user-menu {
 }
 .view-studio-contact-details .views-label {
 	text-transform: uppercase;
-	font-family: "Berthold Med", Arial, sans-serif;
-	margin-bottom: 8px;
-	font-weight: normal;
-	font-size: 11px;
+	font-family: "akzidenz-grotesk", Arial, sans-serif;
+	margin-bottom: 4px;
+	font-weight: 500;
+	font-size: 10px;
 	display: block;
 }
 .view-studio-contact-details .views-field-name span {
 	display: block;
 }
 .view-studio-contact-details .vcard {
-	font-family: "Berthold", Arial, sans-serif;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
+	font-weight: 400;
 }
 .view-studio-contact-details .vcard .adr .street-address,
 .view-studio-contact-details .vcard .adr .postal-code,
 .view-studio-contact-details .vcard .map-link {
 	display: block;
 }
+
+.street-address {
+	margin-top:10px;
+}
+
 .view-studio-contact-details .views-field-address,
 .view-studio-contact-details .views-field-field-telephone
  {
-	margin-bottom: 20px;
-	padding-bottom: 20px;
+	margin-bottom: 15px;
+	padding-bottom: 15px;
 	border-bottom: 1px solid #8AB8FA;
 }
 .view-studio-contact-details .views-row {
@@ -687,11 +733,17 @@ header .block-system-user-menu {
 .view-studio-contact-details .views-field-field-website {
 	margin-bottom: 5px;
 }
+
+views-field views-field-field-website .field-content {
+	margin-top:12px;
+}
+
 .view-studio-contact-details .views-field-field-website,
 .view-studio-contact-details .views-field-field-telephone {
 	font-size: 11px;
 	color: #1D1D1B;
-	font-family: "Berthold Med", Arial, sans-serif;
+	font-family: "akzidenz-grotesk", Arial, sans-serif;
+	font-weight: 500;
 }
 .views-field-field-website a {
 	font-size: 12px;
@@ -741,7 +793,8 @@ header .block-system-user-menu {
 	width: 50%;
 	margin-right: 5%;
 	float: left;
-	font-family: "Berthold", Arial, sans-serif;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
+	font-weight: 400;
 }
 .view-studio-contact-details.view-display-id-block_1 .views-field-group-group {
 	width: 45%;
@@ -790,7 +843,8 @@ main h2.block-title {
 	color: #666;
 	line-height: 1.3;
 	font-size: 12px;
-	font-family: "Berthold", Arial, sans-serif;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
+	font-weight: 400;
 }
 .view-events-at-a-studio .views-field-body p {
 	line-height: 1.3;
@@ -815,8 +869,9 @@ main h2.block-title {
 	left: 15px;
 	background-color: #fff;
 	color: #1D1D1B;
-	font-family: "Berthold", Arial, sans-serif;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
 	font-size: 15px;
+	font-weight: 400;
 }
 .view-featured-artist .views-field-name a {
 	color: #1D1D1B;
@@ -838,16 +893,18 @@ main h2.block-title {
 }
 .view-featured-artist .views-field-field-about-the-artist .views-label {
 	margin: 0 0 8px 0;
-	font-family: "Berthold", Arial, sans-serif;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
 	text-transform: uppercase;
 	color: #1D1D1B;
 	font-size: 14px;
+	font-weight: 400;
 }
 .view-featured-artist .views-field-field-about-the-artist {
 	color: #666;
 	line-height: 1.5;
 	font-size: 13px;
-	font-family: "Berthold", Arial, sans-serif;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
+	font-weight: 400;
 }
 .view-studio-members {
 	float: left;
@@ -878,8 +935,9 @@ main h2.block-title {
 	left: 15px;
 	background-color: #fff;
 	color: #1D1D1B;
-	font-family: "Berthold", Arial, sans-serif;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
 	font-size: 15px;
+	font-weight: 400;
 }
 .view-studio-members .views-field-name a {
 	color: #1D1D1B;
@@ -923,7 +981,8 @@ main h2.block-title {
 	color: #1D1D1B;
 	font-size: 20px;
 	margin: 15px 0 10px 0;
-	font-family: "Berthold", Arial, sans-serif;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
+	font-weight: 400;
 }
 .view-featured-studios .views-field-title a {
 	color: #1D1D1B;
@@ -935,7 +994,8 @@ main h2.block-title {
 }
 .view-featured-studios .views-field-group-group {
 	color: #1D1D1B;
-	font-family: "Berthold", Arial, sans-serif;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
+	font-weight: 400;
 	font-size: 12px;
 	width: 85px;
 }
@@ -956,8 +1016,8 @@ main h2.block-title {
 	margin-bottom: 30px;
 }
 .profile .field-name-field-about-the-artist {
-	font-family: "Berthold", Arial, sans-serif;
-	font-weight: normal;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
+	font-weight: 400;
 	font-size: 18px;
 	margin-bottom: 14px;
 	color: #282828;
@@ -978,35 +1038,39 @@ aside.sidebar-second section.block-views-user-contact-details-block {
 	background-color: #E8FBE0;
 }
 .view-user-contact-details .views-field-field-photo {
-	margin-bottom: 15px;
+	margin-bottom: 5px;
+	margin-top:-4px;
 }
 .view-user-contact-details .views-field-field-disciplines ul {
 	margin-left: 0px;
+	line-height: 1.15em;
+	min-height:60px;
 }
 .view-user-contact-details .views-field-field-disciplines ul li {
 	display: inline;
 	list-style-type: none;
-	font-family: "Berthold", Arial, sans-serif;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
 	text-transform: uppercase;
-	padding: 2px 4px;
+	padding: 3px 4px;
 	color: #fff;
-	background-color: #7F7F7F;
-	font-size: 11px;
-	margin: 0 4px 0 0;
+	background-color: #1D1D1B;
+	font-size: 9px;
+	margin: 0 0px 0 0;
+	font-weight: 400;
 }
 .view-user-contact-details .views-field-name {
-	margin-bottom: 6px;
+	margin-bottom: 5px;
 }
 .view-user-contact-details .views-field-name a {
 	color: #1D1D1B;
-	font-size: 12px;
+	font-size: 10px;
 }
 .view-user-contact-details .views-label {
 	text-transform: uppercase;
-	font-family: "Berthold Med", Arial, sans-serif;
-	margin-bottom: 15px;
-	font-weight: normal;
-	font-size: 11px;
+	font-family: "akzidenz-grotesk", Arial, sans-serif;
+	margin-bottom: 13px;
+	font-weight: 500;
+	font-size: 10px;
 	display: block;
 }
 .view-user-contact-details .views-row {
@@ -1016,9 +1080,12 @@ aside.sidebar-second section.block-views-user-contact-details-block {
 }
 .view-user-contact-details .views-field-field-website,
 .view-user-contact-details .views-field-field-about-the-artist {
-	margin-bottom: 20px;
-	padding-bottom: 20px;
+	margin-bottom: 18px;
+	padding-bottom: 15px;
+	padding-top: 15px;
 	border-bottom: 1px solid #7ce953;
+	border-top: 1px solid #7ce953;
+	margin-top: 19px;
 }
 .view-user-contact-details .views-field-field-about-the-artist,
 .view-user-contact-details .views-field-field-about-the-artist p {
@@ -1027,7 +1094,7 @@ aside.sidebar-second section.block-views-user-contact-details-block {
 	line-height: 1.2;
 }
 .view-user-contact-details .views-field-field-website {
-	font-size: 12px;
+	font-size: 10px;
 	color: #1D1D1B;
 }
 .views-field-field-website a {
@@ -1084,8 +1151,9 @@ a.tab-link.active, a.tab-link:hover {
 .gmap-popup .views-field-title {
 	font-size: 18px;
 	color: #1D1D1B;
-	font-family: "Berthold", Arial, sans-serif;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
 	margin: 5px 0 10px 0;
+	font-weight: 400;
 }
 .gmap-popup .views-field-title a {
 	color: #1D1D1B;
@@ -1098,11 +1166,13 @@ a.tab-link.active, a.tab-link:hover {
 }
 .gmap-popup .vcard {
 	text-align: left;
-	font-family: "Berthold", Arial, sans-serif;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
+	font-weight: 400;
 }
 .gmap-popup .telephone {
 	margin: 5px 0;
-	font-family: "Berthold", Arial, sans-serif;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
+	font-weight: 400;
 }
 .gmap-popup p {
 	margin-bottom: 3px;
@@ -1122,7 +1192,8 @@ a.tab-link.active, a.tab-link:hover {
 	width: 80px;
 	color: #fff;
 	text-transform: uppercase;
-	font-family: "Berthold", Arial, sans-serif;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
+	font-weight: 400;
 	margin-left: 40px;
 	font-size: 12px;
 	margin-top: 36px;
@@ -1141,8 +1212,8 @@ a.tab-link.active, a.tab-link:hover {
 }
 .view-events-list .views-row .views-field-title {
 	display: inline;
-	font-family: "Berthold", Arial, sans-serif;
-	font-weight: normal;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
+	font-weight: 400;
 	color: #1D1D1B;
 	font-size: 20px;
 }
@@ -1151,8 +1222,8 @@ a.tab-link.active, a.tab-link:hover {
 }
 .view-events-list .views-field-field-date {
 	font-size: 20px;
-	font-family: "Berthold", Arial, sans-serif;
-	font-weight: normal;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
+	font-weight: 400;
 	color: #919191;
 	margin-left: 5px;
 }
@@ -1168,7 +1239,8 @@ a.tab-link.active, a.tab-link:hover {
 	line-height: 1.5;
 }
 .view-events-list .views-field-name {
-	font-family: "Berthold", Arial, sans-serif;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
+	font-weight: 400;
 	font-size: 12px;
 	display: inline;
 }
@@ -1183,7 +1255,8 @@ a.tab-link.active, a.tab-link:hover {
 }
 .view-events-list .views-field-field-tags ul li {
 	list-style-type: none;
-	font-family: "Berthold", Arial, sans-serif;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
+	font-weight: 400;
 	text-transform: uppercase;
 	padding: 2px 4px;
 	color: #fff;
@@ -1243,9 +1316,9 @@ span.event-date div {
 }
 .view-event-contact-details .views-label {
 	text-transform: uppercase;
-	font-family: "Berthold", Arial, sans-serif;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
+	font-weight: 400;
 	margin-bottom: 8px;
-	font-weight: normal;
 	font-size: 13px;
 	display: block;
 }
@@ -1255,7 +1328,8 @@ span.event-date div {
 	padding-bottom: 0;
 }
 .view-event-contact-details .vcard {
-	font-family: "Berthold", Arial, sans-serif;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
+	font-weight: 400;
 }
 .view-event-contact-details .vcard .adr .street-address,
 .view-event-contact-details .vcard .adr .postal-code,
@@ -1273,7 +1347,8 @@ span.event-date div {
 }
 .view-event-contact-details .views-field-field-tags ul li {
 	list-style-type: none;
-	font-family: "Berthold", Arial, sans-serif;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
+	font-weight: 400;
 	text-transform: uppercase;
 	padding: 2px 4px;
 	color: #fff;
@@ -1387,6 +1462,147 @@ li.flexslider_views_slideshow_slide .views-field-title {
 	width: 235px;
 	margin-left: 15px;
 	clear: none;
+}
+
+
+.views-field-field-photo .field-content{
+	min-height:100px;
+}
+
+#edit-mailchimp-lists-mailchimp-email-newsletter-signup-mergevars-email, #edit-mailchimp-lists-mailchimp-email-newsletter-signup-mergevars-fname {
+	width:211px;
+	height:24px;
+	line-height:24px;
+	border:none;
+	background-color:#FFF;
+	padding-left:15px;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
+	font-weight: 500;
+	font-size:10px;
+	display:inline-block;
+	-webkit-box-shadow: none !important; 
+ 	box-shadow: none !important;
+	margin:0;
+}
+
+#edit-mailchimp-lists-mailchimp-email-newsletter-signup-mergevars-fname {
+	width:170px;
+	margin-left:8px;
+}
+
+.mailchimp-newsletter-wrapper label{
+	display:none;
+}
+
+#edit-mailchimp-lists-mailchimp-email-newsletter-signup-title {
+	display:none;
+}
+
+.mailchimp-newsletter-wrapper {
+	display:inline-block;
+}
+
+#edit-submit {
+	display:inline-block;
+	-webkit-box-shadow: none !important; 
+ 	box-shadow: none !important;
+	height:24px;
+	margin-left:8px;
+	padding-left:10px;
+	padding-right:10px;
+	background-color:#79DE71;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
+	font-weight: 500;
+	font-size:10px;
+	color:#1D1D1B;
+}
+
+.form-item {
+	display:inline-block;
+}
+
+footer ul {
+	list-style-type:none;
+	text-transform:uppercase;
+	font-size:12px;
+	color:#1D1D1B;
+	font-family: 'akzidenz-grotesk', Arial, sans-serif;
+	font-weight: 500;
+}
+
+footer ul li{
+	display: inline-block;
+}
+
+.pane-menu-menu-fat-footer-menu {
+	float:left;
+	width:40%;
+	margin-left:10%;
+}
+
+.pane-menu-menu-fat-footer-menu ul li {
+	width:38%;
+	margin-top:7px;
+}
+
+.pane-menu-menu-fat-footer-menu-two {
+	float:right;
+	width:50%;
+}
+
+.pane-menu-menu-fat-footer-menu-two ul li{
+	float:right;
+	margin-left:8px;
+	margin-top:-11px;
+}
+
+.pane-menu-menu-fat-footer-menu-two ul li.login-join {
+	height:23px;
+	line-height:23px;
+	background-color:#79DE71;
+	padding-left:8px;
+	padding-right:8px;
+}
+
+.pane-menu-menu-fat-footer-menu-two ul li.twitter a {
+	font-size: 0px;
+	color: transparent;
+	text-indent: -9999px;
+	overflow: hidden;
+	width: 24px;
+	height: 24px;
+	background: transparent url('../images/twitter.png') no-repeat 0px 0px;
+	background-size: cover;
+	display:block;
+}
+
+.pane-menu-menu-fat-footer-menu-two ul li.facebook a {
+	font-size: 0px;
+	color: transparent;
+	text-indent: -9999px;
+	overflow: hidden;
+	width: 24px;
+	height: 24px;
+	background: transparent url('../images/facebook.png') no-repeat 0px 0px;
+	background-size: cover;
+	display:block;
+}
+
+.mailchimp-lists-user-subscribe-form {
+	background-color:#878787;
+	height:100%;
+	padding-left:10px;
+	padding-right:10px;
+	min-height:53px;
+	margin:0;
+}
+
+footer .form-item {
+	margin-top:1.2em;
+}
+
+footer .panel-2col .panel-col-first .inside {
+	margin:0;
 }
 
 @media only screen and (max-width: 55em) {

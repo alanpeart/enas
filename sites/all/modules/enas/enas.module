@@ -34,3 +34,17 @@ function enas_publish_studio_after_payment($uid) {
 	$studio->status = 1;
 	node_save($studio);
 }
+
+function enas_authorname($uid, $link=true) {
+	$name="";
+	global $base_url;
+	$sql = "SELECT name FROM users WHERE uid = ".$uid;
+	$result = db_query($sql);
+	foreach($result as $row) {
+		$name = $row->name;
+	}
+	if($link) {
+		$name = '<a href="'.$base_url.'/user/'.$uid.'" title="'.$name.'">'.$name.'</a>';
+	}
+	return $name;
+}
