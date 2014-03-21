@@ -20,3 +20,135 @@ li.flag-bookmarks {
 	width: 230px;
 	padding-right: 15px;
 }
+.view-forum table {
+	width: 100%;
+}
+.mailchimp-newsletter-wrapper .form-type-checkbox label {
+	display: inline;
+	line-height: 15px;
+	width: auto;
+}
+.mailchimp-newsletter-wrapper .form-type-checkbox input {
+	margin-top: 8px;
+	margin-right: 5px;
+}
+footer.row .copyright a {
+	color: #fff;
+}
+.page-forum h1#page-title {
+	display: none;
+}
+.views-table {
+	border: 0px none;
+	border-width: 0px;
+}
+.views-table caption {
+	color: #222;
+	font-size: 32px;
+	font-family: "akzidenz-grotesk",Arial,sans-serif;
+	line-height: 1.2em;
+	font-weight: 500;
+	text-align: left;
+	margin: 25px 0;
+}
+.views-table thead {
+	background-color: #706F6F;
+	font-weight: normal;
+}
+.views-table thead th {
+background-color: #706F6F;
+	color: #fff;
+	font-weight: 400;
+	font-family: "akzidenz-grotesk",Arial,sans-serif;
+	text-transform: uppercase;
+	font-size: 12px;
+	border: 0px none;
+	border-bottom-width: 0px;
+}
+.views-table tr.even, tr.odd {
+	background-color: #fff;
+}
+.views-table tr.even, .views-table tr.alt, .views-table tr:nth-of-type(2n) {
+    background: none repeat scroll 0% 0% #fff;
+}
+.views-table tr:hover {
+	background-color: #EDEDED;
+}
+.views-table tbody td, .views-table thead th {
+	padding: 15px;
+}
+.views-table a {
+	color: #000;
+}
+
+.view-forum .views-table a.username {
+	font-style: italic;
+	color: #999;
+	margin-left: 8px;
+	font-family: "akzidenz-grotesk",Arial,sans-serif;
+	font-weight: 400;
+}
+section.block-views-new-posts-block {
+	background: #FFD9E0;
+	padding: 10px 15px 0px 15px;
+}
+section.block-views-new-posts-block h2.block-title {
+	text-indent: 15px;
+}
+section.block-views-new-posts-block .views-row {
+	padding: 15px;
+	background: #fff;
+	margin-bottom: 15px;
+	padding-bottom: 15px;
+	border-bottom: 0px;
+}
+section.block-views-new-posts-block .views-row .views-field-title {
+	margin-bottom: 8px;
+}
+section.block-views-new-posts-block .views-row .views-field-title a {
+	color: #000;
+	font-weight: 500;
+	font-family: "akzidenz-grotesk",Arial,sans-serif;
+}
+section.block-views-new-posts-block .views-row .views-field-body {
+	font-size: 12px;
+}
+footer.row {
+	margin-top: 30px;
+}
+aside .views-exposed-form {
+	background-color: #DADADA;
+	padding: 15px;
+}
+.node-type-discussion .main {
+	float: left;
+	position: relative;
+}
+.node-type-discussion .main article {
+	margin-left: 120px;
+}
+.node-type-discussion .main section.block-views-author-info-block {
+	width: 120px;
+	height: 100%;
+	float: left;
+	position: absolute;
+}
+.node-type-discussion .main section.block-views-author-info-block .view {
+
+}
+.node-type-discussion .main section.block-views-author-info-block .views-field-name {
+	margin: 8px 0 4px 0;
+	
+}
+.node-type-discussion .main section.block-views-author-info-block .views-field-name a {
+	color: #000;
+}
+.node-type-discussion .main section.block-views-author-info-block .views-field-created {
+	color: #999;
+	font-style: italic;
+	font-size: 13px;
+}
+.node-type-discussion .main section.block-views-author-info-block .views-row {
+	padding-bottom: 0;
+	border-bottom: 0px;
+}

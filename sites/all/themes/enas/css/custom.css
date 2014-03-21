@@ -108,6 +108,12 @@ header {
 	background-position:center center;
 	background-size:cover;
 }
+
+.front header {
+	background:none;
+	background: tranparent;
+}
+
 img.logo {
 	margin-top: 35px;
 	margin-bottom: 35px;
@@ -268,7 +274,7 @@ footer.row {
 	border:none;
 }
 footer.row a {
-	color:#1D1D1B;
+	color:#FFFFFF;
 }
 footer.row .copyright {
 	max-width: 960px;
@@ -288,7 +294,7 @@ footer.row .footer {
 	margin: 0 auto;
 	float: none !important;
 	padding: 0;
-	background-color: #EDEDED;
+	background-color: #DADADA;
 	color: #1D1D1B;
 	overflow: hidden;
 }
@@ -343,6 +349,7 @@ footer.row .footer .block-menu-menu-footer-menu {
 }
 header {
 	position: relative;
+	z-index:5;
 }
 
 /* Header user menu */
@@ -374,6 +381,16 @@ header .block-system-user-menu {
 	line-height: 24px;
 	font-weight: 400;
 }
+
+.block-system-user-menu ul.menu li.login-join {
+	height:23px;
+	line-height:23px;
+	background-color:#7ce953;
+	padding-left:8px;
+	padding-right:8px;
+	text-transform:uppercase;
+}
+
 .block-system-user-menu ul.menu li a {
 	display: block;
 	color: #1D1D1B;
@@ -409,18 +426,46 @@ header .block-system-user-menu {
 
 /* Exposed Filters */
 
-.sidebar .views-exposed-form .views-exposed-widget > label {
-	text-transform: uppercase;
+.sidebar .views-exposed-form .views-exposed-widget label {
 	font-family: 'akzidenz-grotesk', Arial, sans-serif;
 	margin-bottom: 8px;
-	font-weight: 400;
-	font-size: 14px;
-	color: #706f6f;
+	font-weight: 500;
+	font-size: 10px;
+	color: #000000;
+	width:24%;
+	display:inline-block;
+	margin-left:8%;
 }
+
+.form-item-distance-search-units {
+	display:none !important;
+}
+
+.views-exposed-form input{
+	display:inline-block;
+	width:62%;
+	height:25px;
+	line-height:25px;
+	border:none;
+	box-shadow:none;
+}
+
+#edit-keys {
+	width:100%;
+}
+
+#edit-keys-wrapper .views-widget {
+	width:62%;
+	display:inline-block;
+}
+
+#edit-keys-wrapper .form-item {
+	width:100%;	
+}
+
 .form-type-bef-link {
 	display: inline-block;
 	float: right;
-	text-transform: uppercase;
 	background: #dadada;
 	padding: 0px 9px;
 	color: #1D1D1B;
@@ -451,7 +496,7 @@ header .block-system-user-menu {
 	width: 100%;
 	padding-left: 0px;
 	padding-right: 0px;
-	margin-top:30px;
+	margin-top:15px;
 }
 .sidebar #edit-field-event-type-tid-wrapper {
 	width: 100%;
@@ -1369,9 +1414,22 @@ span.event-date div {
 	border-bottom: 1px solid #BABABA;
 }
 
-.item-list .pager {
+.item-list .pager{
+	text-align: right;
+}
+
+
+.item-list .pager li{
 	clear: both;
 	text-align: right;
+	color:#878787;
+	font-size:19px;
+	font-weight:400 !important;
+}
+
+.item-list .pager li a{
+	color:#1D1D1B;
+	font-weight:400;
 }
 
 .item-list .pager li {
@@ -1380,7 +1438,8 @@ span.event-date div {
 }
 
 body > div.page > main > aside {
-	padding-left:0;
+	/*padding-left:0;*/
+	padding-right:0;
 }
 
 .profile .user-picture {
@@ -1397,7 +1456,12 @@ section.l-featured.row {
 	height: auto;
 	max-height: 600px;
 	overflow: hidden;
+	position:relative;
+	float:left;
+	margin-top:-205px;
+
 }
+
 section.l-featured.row .flexslider {
 	margin: 0;
 	border: 0px none;
@@ -1423,6 +1487,10 @@ li.flexslider_views_slideshow_slide .views-field-title {
 	font-family: "Proxima Nova Semibold", Arial, sans-serif;
 	font-weight: normal;
 	z-index: 10;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 60.625em;
 }
 .front #menubar nav {
 	margin-bottom: 0px;
@@ -1510,7 +1578,7 @@ li.flexslider_views_slideshow_slide .views-field-title {
 	margin-left:8px;
 	padding-left:10px;
 	padding-right:10px;
-	background-color:#79DE71;
+	background-color:#7ce953;
 	font-family: 'akzidenz-grotesk', Arial, sans-serif;
 	font-weight: 500;
 	font-size:10px;
@@ -1537,7 +1605,7 @@ footer ul li{
 .pane-menu-menu-fat-footer-menu {
 	float:left;
 	width:40%;
-	margin-left:10%;
+	margin-left:5%;
 }
 
 .pane-menu-menu-fat-footer-menu ul li {
@@ -1559,7 +1627,7 @@ footer ul li{
 .pane-menu-menu-fat-footer-menu-two ul li.login-join {
 	height:23px;
 	line-height:23px;
-	background-color:#79DE71;
+	background-color:#7ce953;
 	padding-left:8px;
 	padding-right:8px;
 }
@@ -1589,9 +1657,7 @@ footer ul li{
 }
 
 .mailchimp-lists-user-subscribe-form {
-	background-color:#878787;
 	height:100%;
-	padding-left:10px;
 	padding-right:10px;
 	min-height:53px;
 	margin:0;
@@ -1604,6 +1670,25 @@ footer .form-item {
 footer .panel-2col .panel-col-first .inside {
 	margin:0;
 }
+
+#views-exposed-form-artists-page {
+	background-color:#DEDEDE;
+	margin-top:15px;
+}
+
+.copyright span {
+	float:right;
+}
+
+footer .login-join a{
+	color:#1D1D1B;
+}
+
+footer .menu a{
+	color:#1D1D1B;
+	font-weight:500;
+}
+
 
 @media only screen and (max-width: 55em) {
   /* line 362, ../../../../../../../../../../var/lib/gems/1.8/gems/zurb-foundation-4.3.1/scss/foundation/components/_top-bar.scss */
