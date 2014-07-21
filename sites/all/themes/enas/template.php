@@ -1,5 +1,83 @@
 <?php
 
+function enas_theme($existing, $type, $theme, $path){
+  return array(
+    'user_register' => array(
+      'render element' => 'form',
+      'template' => 'templates/user-register',
+	   'preprocess functions' => array(
+			'enas_preprocess_user_register_form'
+		),
+    ),
+	'studio_node_form' => array(
+      'arguments' => array(
+          'form' => NULL,
+      ),
+      'template' => 'templates/node--studio-edit',
+      'render element' => 'form',
+    )
+  );
+}
+
+function enas_status_messages($variables) {
+  $display = $variables['display'];
+  $output = '';
+
+  $status_heading = array(
+    'error' => t('Error message'),
+    'status' => t('Status message'),
+    'warning' => t('Warning message'),
+  );
+  $status_heading_brief = array(
+    'error' => t('Error'),
+    'status' => t('Status'),
+    'warning' => t('Warning'),
+  );
+
+  $status_mapping = array(
+    'error' => 'alert',
+    'status' => 'success',
+    'warning' => 'secondary'
+  );
+
+  foreach (drupal_get_messages($display) as $type => $messages) {
+    if (isset($status_mapping[$type])) {
+      $output .= "<div data-alert class=\"alert-box $status_mapping[$type]\">\n";
+    }
+    else {
+      $output .= "<div data-alert class=\"alert-box\">\n";
+    }
+
+    if (!empty($status_heading[$type])) {
+      $output .= '<h2 class="element-invisible">' . $status_heading[$type] . "</h2>\n";
+	  $output .= '<h4 class="alert-heading">' . $status_heading_brief[$type] . '</h4>';
+    }
+    if (count($messages) > 1) {
+      $output .= " <ul class=\"no-bullet\">\n";
+      foreach ($messages as $message) {
+        $output .= '  <li>' . $message . "</li>\n";
+      }
+      $output .= " </ul>\n";
+    }
+    else {
+      $output .= $messages[0];
+    }
+
+    if(!theme_get_setting('zurb_foundation_messages_modal')) 
+      $output .= '<a href="#" class="close">&times;</a>';
+    
+    $output .= "</div>\n";
+  }
+
+  if ($output != '' && theme_get_setting('zurb_foundation_messages_modal')) {
+    $output = '<div id="status-messages" class="reveal-modal" role="alertdialog">'. $output;
+    $output .= '<a class="close-reveal-modal">&#215;</a>';
+    $output .= "</div>";
+  }
+
+  return $output;
+}
+
 /**
  * Implements template_preprocess_html().
  *

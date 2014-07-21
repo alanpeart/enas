@@ -1,0 +1,83 @@
+diff --git a/reg_with_pic.module b/reg_with_pic.module
+index 98a7df6..a939fde 100644
+--- a/reg_with_pic.module
++++ b/reg_with_pic.module
+@@ -12,7 +12,20 @@ function reg_with_pic_form_user_admin_settings_alter(&$form, &$form_state, $form
+     '#type' => 'checkbox',
+     '#title' => t('Enable pictures on registration'),
+     '#default_value' => variable_get('reg_with_pic_enabled', 0),
+-    '#weight' => -10
++    '#weight' => -20
++  );
++  $form['personalization']['pictures']['reg_with_pic_required'] = array(
++    '#type' => 'checkbox',
++    '#title' => t('Require pictures on registration.'),
++    '#description' => t('For this option to have effect, you need to enable user pictures on registration.'),
++    '#default_value' => variable_get('reg_with_pic_required', 0),
++    '#weight' => -15,
++    '#states' => array(
++      // Only show if reg with pic is enabled.
++      'visible' => array(
++       ':input[name="reg_with_pic_enabled"]' => array('checked' => TRUE),
++      ),
++    ),
+   );
+   $form['personalization']['pictures']['reg_with_pic_weight'] = array(
+     '#type' => 'textfield',
+@@ -34,6 +47,7 @@ function reg_with_pic_settings_submit(&$form, &$form_state) {
+   variable_set('reg_with_pic_enabled', $form_state['values']['reg_with_pic_enabled']);
+   // Save weight variable.
+   variable_get('reg_with_pic_weight', $form_state['values']['reg_with_pic_weight']);
++  variable_set('reg_with_pic_required', $form_state['values']['reg_with_pic_required']);
+ }
+ 
+ /**
+@@ -48,14 +62,15 @@ function reg_with_pic_form_user_register_form_alter(&$form, &$form_state, $form_
+     '#access' => (variable_get('user_pictures', 0) && variable_get('reg_with_pic_enabled', 0))
+   );
+   // Set picture file field.
++  $required = variable_get('reg_with_pic_required', 0) ? ' ' . theme('form_required_marker', array()) : '';
+   $form['picture']['picture_upload'] = array(
+     '#type' => 'file',
+-    '#title' => t('Upload picture'),
++    '#title' => t('Upload picture') . $required,
+     '#size' => 48,
+     '#description' => t('Your virtual face or picture. Pictures larger than @dimensions pixels will be scaled down.', array('@dimensions' => variable_get('user_picture_dimensions', '85x85'))) . ' ' . filter_xss_admin(variable_get('user_picture_guidelines', '')),
+   );
+   // Validate with user module validation function.
+-  $form['#validate'][] = 'user_validate_picture';
++  $form['#validate'][] = 'reg_with_pic_user_validate_picture';
+ 
+   return $form;
+ }
+@@ -94,3 +109,30 @@ function reg_with_pic_entity_presave($account, $type) {
+     $account->picture = $account->picture->fid;
+   }
+ }
++
++/**
++ * Validates an image uploaded by a user.
++ *
++ * @see user_validate_picture()
++ * @see user_account_form()
++ */
++function reg_with_pic_user_validate_picture(&$form, &$form_state) {
++  // If required, validate the uploaded picture.
++  $validators = array(
++    'file_validate_is_image' => array(),
++    'file_validate_image_resolution' => array(variable_get('user_picture_dimensions', '85x85')),
++    'file_validate_size' => array(variable_get('user_picture_file_size', '30') * 1024),
++  );
++
++  // Save the file as a temporary file.
++  $file = file_save_upload('picture_upload', $validators);
++  if ($file === FALSE) {
++    form_set_error('picture_upload', t("Failed to upload the picture image; the %directory directory doesn't exist or is not writable.", array('%directory' => variable_get('user_picture_path', 'pictures'))));
++  }
++  elseif ($file !== NULL) {
++    $form_state['values']['picture_upload'] = $file;
++  }
++  elseif (variable_get('reg_with_pic_required', 0)) {
++    form_set_error('picture_upload', t("Picture field is required."));
++  }
++}

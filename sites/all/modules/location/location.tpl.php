@@ -13,9 +13,6 @@
         <?php endif; ?>
       </div>
     <?php endif; ?>
-    <?php if (!empty($postal_code)): ?>
-      <span class="postal-code"><?php print $postal_code; ?></span>
-    <?php endif; ?>
     <?php if (!empty($city)): ?>
       <span class="locality"><?php print $city; ?></span><?php if (!empty($province)) {
         print ', ';
@@ -23,6 +20,9 @@
     <?php endif; ?>
     <?php if (!empty($province)): ?>
       <span class="region"><?php print $province_print; ?></span>
+    <?php endif; ?>
+    <?php if (!empty($postal_code)): ?>
+      <span class="postal-code"><?php print $postal_code; ?></span>
     <?php endif; ?>
     <?php if (!empty($country_name)): ?>
       <div class="country-name"><?php print $country_name; ?></div>

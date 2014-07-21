@@ -7,7 +7,7 @@
 
 function enas_user_studio($uid) {
 	$gid = 0;
-	$sql = "SELECT gid FROM `og_membership` where etid = ".$uid." AND entity_type = 'user' LIMIT 1";
+	$sql = "SELECT gid FROM `og_membership` where etid = ".$uid." AND entity_type = 'user'  AND state = 1 AND etid NOT IN (SELECT uid FROM users_roles WHERE rid IN (3, 6)) LIMIT 1";
 	$result = db_query($sql);
 	foreach($result as $row) {
 		$gid = $row->gid;
@@ -47,4 +47,70 @@ function enas_authorname($uid, $link=true) {
 		$name = '<a href="'.$base_url.'/user/'.$uid.'" title="'.$name.'">'.$name.'</a>';
 	}
 	return $name;
+}
+
+function enas_form_alter(&$form, &$form_state, $form_id) {
+	switch($form_id) {
+		case "user_login_form":
+			
+		break;
+		case "user_register_form":
+			$form['#validate'][] = 'enas_user_register_form_validate';
+		break;
+	}
+}
+
+function enas_user_register_form_validate($form, &$form_state) {
+	if (strtolower($form_state['values']['field_i_want_to']['und'][0]['value']) == 'join an existing studio') {
+		if(!isset($form_state['values']['og_user_node']['und'][0]['target_id']) || $form_state['values']['og_user_node']['und'][0]['target_id'] == 0) {
+			form_set_error('og_user_node', 'You indicated that you wanted to join an existing studio, but you have not chosen a studio.');
+		}
+	}
+}
+
+function enas_form_user_register_form_alter(&$form, &$form_state, $form_id) {
+  $form['#theme'] = 'user_register';
+}
+
+function enas_studio_link() {
+	global $user; $nid = 0;
+	$sql = "SELECT nid FROM node WHERE uid = ".$user->uid." AND type = 'studio' ORDER BY created DESC LIMIT 1";
+	$result = db_query($sql);
+	foreach($result as $row) {
+		$nid = $row->nid;
+	}
+	if($nid > 0) {
+		$link = '<a href="'.url('node/'.$nid).'" title="My Studio">My Studio</a>';
+	}
+	else {
+		$link = '<a href="/node/add/studio" title="Add a studio">Add a studio</a>';
+	}
+	return $link;
+}
+function enas_display_studio($nid) {
+	$members = 0; $hide=TRUE;
+	$studio = node_load($nid);
+	$sql = "SELECT COUNT(DISTINCT etid) as members FROM og_membership WHERE gid = ".$nid." AND group_type = 'node' AND state=1";
+	$result = db_query($sql);
+	foreach($result as $row) {
+		$members = $row->members;
+	}
+	if($members > 1 || $studio->field_studio_type['und'][0]['tid'] == 23) {
+		$hide = FALSE;
+	}
+	return $hide;
+}
+
+function computed_field_field_search_text_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+	/* 
+	* Construct a string containing all searchable text associated with a user profile.
+	* Needed in order to work around search limitation with user fields in views
+	*/
+	$searchText = $entity->name . " " . $entity->field_website['und'][0]['url'] . " " . $entity->field_about_the_artist['und'][0]['value'];
+	$searchText .= " " . $entity->field_more_about_me['und'][0]['value'] . " " . $entity->field_twitter_handle['und'][0]['value'];
+	$searchText .= " " . $entity->field_facebook_page['und'][0]['value'];
+	foreach($entity->field_disciplines['und'] as $dis) {
+		$searchText .= " ".$dis['name'];
+	}
+	$entity_field[0]['value'] = $searchText;
 }

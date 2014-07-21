@@ -26,6 +26,7 @@
     print $q;
   ?>
 <?php endif; ?>
+<a name="view-filter-block"></a>
 <div class="views-exposed-form">
   <div class="views-exposed-widgets clearfix">
     <?php foreach ($widgets as $id => $widget): ?>
@@ -50,7 +51,12 @@
           </div>
         <?php endif; ?>
       </div>
+	  <?php if(strtolower($widget->label) == 'studio type:'): ?>
+		<h3 class="sub-header">Refine by:</h3>
+		<div class="views-exposed-form-widget-wrapper">
+		<?php endif; ?>
     <?php endforeach; ?>
+	</div>
     <?php if (!empty($sort_by)): ?>
       <div class="views-exposed-widget views-widget-sort-by">
         <?php print $sort_by; ?>

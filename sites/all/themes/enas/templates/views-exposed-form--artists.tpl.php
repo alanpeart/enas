@@ -26,9 +26,18 @@
     print $q;
   ?>
 <?php endif; ?>
+<a name="view-filter-block"></a>
+<h3 class="sub-header">Refine by:</h3>
 <div class="views-exposed-form">
   <div class="views-exposed-widgets clearfix">
     <?php foreach ($widgets as $id => $widget): ?>
+			<?php //dsm($widget); 
+			switch(strtolower($widget->label)) {
+				case "keywords":
+					?><div class="views-exposed-form-widget-wrapper"><?php
+				break;
+			}
+			?>
       <div id="<?php print $widget->id; ?>-wrapper" class="views-exposed-widget views-widget-<?php print $id; ?>">
         <?php if (!empty($widget->label)): ?>
           <label for="<?php print $widget->id; ?>">
@@ -49,8 +58,9 @@
             <?php print $widget->description; ?>
           </div>
         <?php endif; ?>
-      </div>
+	  </div>
     <?php endforeach; ?>
+      </div>
     <?php if (!empty($sort_by)): ?>
       <div class="views-exposed-widget views-widget-sort-by">
         <?php print $sort_by; ?>

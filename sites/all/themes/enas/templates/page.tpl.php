@@ -33,7 +33,7 @@
         </div>
       <!--/.l-header-region -->
     <?php endif; ?>
-	
+	<div id="mobile-bar"><div id="mobile-logo"><a href="/"><img src="/sites/all/themes/enas/images/enas_e.png" alt="ENAS" /></a></div><div id="mobile-menu-link"><a href="#mobile-menu"><img src="/sites/all/themes/enas/images/mobilemenu.png" alt="Menu" /></a></div></div>
     </section>
 	<section id="menubar">
     <?php if ($top_bar): ?>
@@ -171,6 +171,44 @@
     <!--/.triptych -->
   <?php endif; ?>
 
+  	<section id="menubar" class="mobile-menu">
+	<a name="mobile-menu"></a>
+    <?php if ($top_bar): ?>
+      <!--.top-bar -->
+      <?php if ($top_bar_classes): ?>
+      <div class="<?php print $top_bar_classes; ?>">
+      <?php endif; ?>
+        <nav id="main-menu" class="top-bar navigation"<?php print $top_bar_options; ?>>
+          <section class="top-bar-section">
+            <?php if ($top_bar_main_menu) :?>
+              <?php print $top_bar_main_menu; ?>
+            <?php endif; ?>
+            <?php if ($top_bar_secondary_menu) :?>
+              <?php print $top_bar_secondary_menu; ?>
+            <?php endif; ?>
+          </section>
+        </nav>
+      <?php if ($top_bar_classes): ?>
+      </div>
+      <?php endif; ?>
+      <!--/.top-bar -->
+	<?php else: ?>
+	    <?php if ($alt_main_menu): ?>
+        <nav id="main-menu" class="navigation" role="navigation">
+          <?php print ($alt_main_menu); ?>
+        </nav> <!-- /#main-menu -->
+      <?php endif; ?>
+
+      <?php if ($alt_secondary_menu): ?>
+        <nav id="secondary-menu" class="navigation" role="navigation">
+          <?php print $alt_secondary_menu; ?>
+        </nav> <!-- /#secondary-menu -->
+      <?php endif; ?>
+    <?php endif; ?>
+	
+	 </section>
+  
+  
   <?php if (!empty($page['footer_firstcolumn']) || !empty($page['footer_secondcolumn']) || !empty($page['footer_thirdcolumn']) || !empty($page['footer_fourthcolumn'])): ?>
     <!--.footer-columns -->
     <section class="row l-footer-columns">
@@ -207,7 +245,7 @@
     <?php endif; ?>
 
       <div class="copyright large-12 columns">
-        <a href="terms" title="Terms">Terms</a> | &copy; <?php print date('Y') . ' ' . 'Essex Network of Artist Studios'; ?>
+        <a href="/terms" title="Terms">Terms</a> | &copy; <?php print date('Y') . ' ' . 'Essex Network of Artist Studios'; ?>
 		<span>Designed by <a href="http://creative.coop" title="Creative.Coop" target="_new">Creative Coop</a></span>
       </div>
   </footer>

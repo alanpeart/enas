@@ -26,9 +26,23 @@
     print $q;
   ?>
 <?php endif; ?>
+<a name="view-filter-block"></a>
 <div class="views-exposed-form">
   <div class="views-exposed-widgets clearfix">
     <?php foreach ($widgets as $id => $widget): ?>
+			<?php // dsm($widget); 
+			switch(strtolower($widget->label)) {
+				case "keywords":
+					?><h3 class="sub-header">Refine by:</h3><div class="views-exposed-form-widget-wrapper"><?php
+				break;
+				case "event type":
+					?></div><h3 class="sub-header">Filter by:</h3><?php
+					$header = 'Filter by:';
+				break;
+				default:
+					
+			}
+			?>
       <div id="<?php print $widget->id; ?>-wrapper" class="views-exposed-widget views-widget-<?php print $id; ?>">
         <?php if (!empty($widget->label)): ?>
           <label for="<?php print $widget->id; ?>">

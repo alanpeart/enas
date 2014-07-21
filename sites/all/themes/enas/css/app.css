@@ -2005,7 +2005,7 @@ td {
 /* Default Link Styles */
 /* line 151, ../../../../../../../../../../var/lib/gems/1.8/gems/zurb-foundation-4.3.1/scss/foundation/components/_type.scss */
 a {
-  color: #2ba6cb;
+  color: #000;
   text-decoration: none;
   line-height: inherit;
 }
@@ -5880,7 +5880,7 @@ label.error {
   border-style: solid;
   border-width: 1px;
   display: block;
-  font-weight: bold;
+  font-weight: 500;
   margin-bottom: 1.25em;
   position: relative;
   padding: 0.6875em 1.3125em 0.75em 0.6875em;
@@ -5888,6 +5888,9 @@ label.error {
   background-color: #2ba6cb;
   border-color: #2284a1;
   color: white;
+}
+.alert-box a {
+	color: #000;
 }
 /* line 97, ../../../../../../../../../../var/lib/gems/1.8/gems/zurb-foundation-4.3.1/scss/foundation/components/_alert-boxes.scss */
 .alert-box .close {

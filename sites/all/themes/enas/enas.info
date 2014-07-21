@@ -30,6 +30,7 @@ base theme = zurb_foundation
 stylesheets[all][] = css/app.css
 ; Comment the app.css file (above) if you're using sass to preprocess css:
 stylesheets[all][] = css/custom.css
+stylesheets[all][] = css/ie8-grid-foundation-4.css
 stylesheets[all][] = css/alan.css
 
 ; Foundation JavaScript.
@@ -66,6 +67,7 @@ scripts[] = js/foundation.min.js
 scripts[] = js/masonry.pkgd.min.js
 scripts[] = js/imagesloaded.pkgd.js
 scripts[] = js/jquery.example.js
+scripts[] = js/respond.min.js
 scripts[] = js/docready.js
 
 ; This section lists the regions defined in the page.tpl.php. The name in

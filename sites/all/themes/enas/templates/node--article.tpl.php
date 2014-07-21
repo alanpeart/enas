@@ -82,6 +82,9 @@
     hide($content['comments']);
     hide($content['links']);
     hide($content['field_tags']);
+	if($node->field_hide_placeholder_image['und'][0]['value'] == 1) {
+		hide($content['field_image']);
+	}
     print render($content);
   ?>
 
