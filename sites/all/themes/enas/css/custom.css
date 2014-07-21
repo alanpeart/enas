@@ -3655,7 +3655,89 @@ a.refine:hover {
 	border: 0;
 }
 
-
+.contact-form .form-item {
+	float: left;
+	clear: left;
+}
+.contact-form button {
+	float: left;
+	clear: left;
+}
+.contact-form .form-item-name,
+.contact-form .form-item-mail {
+	display: none;
+}
+.contact-form #edit-to > label {
+	display: inline;
+}
+.contact-form #edit-copy {
+	margin-bottom: 4px;
+}
+.contact-form .form-item label {
+	font-size: 12px;
+	font-weight: 500;
+	margin-bottom: 3px;
+}
+.contact-form textarea {
+	min-height: 100px;
+}
+.contact-form input[type="text"] {
+	width: 290px;
+	max-width: 100%;
+}
+.contact-form textarea, .contact-form .grippie {
+	max-width: 100%;
+}
+.contact-form button:hover {
+	-moz-opacity: 0.8 !important;
+	-webkit-opacity: 0.8 !important;
+	opacity: 0.8 !important;
+}
+.contact-form button {
+	background-color: #7CE953 !important;
+	margin-top: 0px;
+	padding-top: 16px;
+	padding-bottom: 16px;
+	background-image: url(/sites/all/themes/enas/images/caret_large.png);
+	background-size: 15px 25px;
+	-ms-behavior: url(/sites/all/themes/enas/css/backgroundsize.min.htc);
+	background-repeat: no-repeat;
+	background-position: 93% center;
+	color: #1D1D1B !important;
+	font-size: 14px !important;
+	text-transform: uppercase;
+	display: block;
+	font-weight: 500;
+	padding-left: 20px;
+	padding-right: 40px;
+	float: left;
+	height: 50px;
+	-moz-border-radius: 0px !important;
+	-webkit-border-radius: 0px !important;
+	border-radius: 0px !important;
+	margin-left: 0px;
+	-webkit-transition: -webkit-opacity 300ms ease-out;
+	-moz-transition: -moz-opacity 300ms ease-out;
+	transition: opacity 300ms ease-out;
+}
+div.modal-forms-modal-content .modal-header {
+	background-color: #7ce953;
+	padding: 10px 10px 15px 10px;
+	text-align: center;
+}
+div.ctools-modal-content .modal-title {
+	font-weight: 600;
+}
+div.modal-forms-modal-content .popups-close {
+    background: url("../images/controls.png") no-repeat scroll -25px 0 rgba(0, 0, 0, 0);
+    cursor: pointer;
+    float: right;
+    height: 25px;
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap;
+    width: 25px;
+}
 
 @media only screen and (max-width: 55em) {
   /* line 362, ../../../../../../../../../../var/lib/gems/1.8/gems/zurb-foundation-4.3.1/scss/foundation/components/_top-bar.scss */

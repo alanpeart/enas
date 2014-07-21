@@ -32,7 +32,7 @@ function modal_forms_menu() {
     'title' => 'Log in',
     'page callback' => 'modal_forms_login',
     'page arguments' => array(1),
-    'access callback' => TRUE,
+    'access callback' => 'user_is_anonymous',
     'file' => 'modal_forms.pages.inc',
     'type' => MENU_CALLBACK,
   );

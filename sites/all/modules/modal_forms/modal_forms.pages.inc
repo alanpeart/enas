@@ -20,7 +20,16 @@ function modal_forms_login($js = NULL) {
     'ajax' => TRUE,
   );
 
-  $output = ctools_modal_form_wrapper('user_login', $form_state);
+  // Check to make sure the user has not logged in on another session.
+  // If that is the case just reload the page.
+  if (user_is_logged_in()) {
+    $output = array();
+    ctools_add_js('ajax-responder');
+    $output[] = ctools_ajax_command_reload();
+  }
+  else {
+    $output = ctools_modal_form_wrapper('user_login', $form_state);
+  }
   if (!empty($form_state['executed'])) {
     // We'll just overwrite the form output if it was successful.
     $output = array();
@@ -29,9 +38,9 @@ function modal_forms_login($js = NULL) {
     if (isset($_GET['destination'])) {
       $output[] = ctools_ajax_command_redirect($_GET['destination']);
     }
-    elseif(module_exists('login_destination')) {
+    elseif (module_exists('login_destination')) {
       $destination = login_destination_get_destination('login');
-      $output[] = ctools_ajax_command_redirect($destination['path']);
+      $output[] = ctools_ajax_command_redirect(is_array($destination) ? $destination[0] : $destination);
     }
     else {
       $output[] = ctools_ajax_command_reload();
@@ -63,9 +72,9 @@ function modal_forms_register($js = NULL) {
     if (isset($_GET['destination'])) {
       $output[] = ctools_ajax_command_redirect($_GET['destination']);
     }
-    elseif(module_exists('login_destination')) {
+    elseif (module_exists('login_destination')) {
       $destination = login_destination_get_destination('login');
-      $output[] = ctools_ajax_command_redirect($destination['path']);
+      $output[] = ctools_ajax_command_redirect(is_array($destination) ? $destination[0] : $destination);
     }
     else {
       $output[] = ctools_ajax_command_reload();
@@ -246,7 +255,7 @@ function modal_forms_view_webform($node, $js = NULL) {
 
   // If we are in a translation node, and there are no webform['components'], so
   // we should look into the source webform node, to load our webform from there.
-  if(empty($node->webform['components']) && (isset($node->tnid) && $node->tnid != $node->nid)) {
+  if (empty($node->webform['components']) && (isset($node->tnid) && $node->tnid != $node->nid)) {
     $tnode = $node;
     $node = node_load($tnode->tnid);
   }
