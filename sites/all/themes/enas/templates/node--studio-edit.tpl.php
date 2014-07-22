@@ -35,12 +35,16 @@
 		if($admin) {
 	?>
 	<div id="studio-six" class="even form-zebra">
+		<h2>Files for Download</h2>
+		<?php print drupal_render($form['field_file']); ?>
+	</div>
+	<div id="studio-seven" class="odd form-zebra">
 		<h2>Administrator Options</h2>
 		<?php print drupal_render($form['field_feature_this']); ?>
 		<?php print drupal_render($form['group_register']); ?>
-	</div>
+	</div>	
 		<!--Print the rest of the form-->
-	<div id="studio-remain" class="odd last form-zebra">
+	<div id="studio-remain" class="even last form-zebra">
 		<?php print drupal_render_children($form); ?>
 	</div>
 	<?php 

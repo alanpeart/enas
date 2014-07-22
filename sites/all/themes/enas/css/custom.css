@@ -962,6 +962,9 @@ header .block-system-user-menu {
 	font-size: 13px;
 	line-height: 1.5;
 }
+.node-studio .field-name-field-file {
+	margin-bottom: 40px;
+}
 .node-studio .field .field-label {
 	font-weight: 400;
 	font-family: 'akzidenz-grotesk', Arial, sans-serif;
@@ -2871,7 +2874,7 @@ input:-webkit-autofill {
 #studio-main #edit-field-image label {
 	display: none;
 }
-#studio-remain button {
+#studio-remain button:not(.ajax-processed) {
 	background-color: #7CE953;
 	margin-top: 0px;
 	padding-top: 16px;
@@ -3196,6 +3199,13 @@ input[type="file"] {
 	background-color: #7CE753;
 }
 .field-name-field-file span.file > img {
+	display: none;
+}
+#studio-main .file-widget .description,
+#studio-main .form-type-managed-file .description,
+#studio-main .file-widget .file-size,
+#studio-main #edit-field-file fieldset legend,
+#studio-main #edit-field-file .tabledrag-toggle-weight-wrapper {
 	display: none;
 }
 .field-name-field-file table td:last-child {

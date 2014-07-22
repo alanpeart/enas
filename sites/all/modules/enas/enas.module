@@ -139,7 +139,7 @@ function enas_notify_studio_managers_annually() {
 	foreach($managers as $manager_uid=>$group_id) {
 		$manager = user_load($manager_uid);
 		$members = array();
-		$uresult = db_query("SELECT etid, created FROM og_membership WHERE gid = :gid AND entity_type LIKE 'user'", array(':gid' => $group_id));
+		$uresult = db_query("SELECT etid, created FROM og_membership WHERE gid = :gid AND entity_type LIKE 'user' AND state=1", array(':gid' => $group_id));
 		foreach($uresult as $urow) {
 			// Got the group members, let's see who needs a reminder
 			if(enas_notify_check_year($manager_uid, $urow->etid, $urow->created)) {
