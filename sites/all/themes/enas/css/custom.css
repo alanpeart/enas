@@ -3334,12 +3334,25 @@ aside #views-exposed-form-resources-page #edit-keys--2-wrapper {
 	height: 14px;
 	font-size: 14px;
 }
+
 .form-item-field-studio-type-tid .form-item .description span.has-tip {
 	font-size: 14px;
 }
 #edit-field-studio-type-tid-wrapper,
 .views-widget-filter-field_studio_type_tid {
 	width: 100%;
+}
+#field-location-add-more-wrapper .description {
+	font-size: 13px;
+	line-height: 1.5;
+	color: #666;
+	margin-bottom: 8px;
+}
+#edit-field-location-und-0-locpick-current-current-source {
+	display: none;
+}
+#field-location-add-more-wrapper .description br {
+	display: none;
 }
 .sidebar #views-exposed-form-studios-page #edit-keys-wrapper,
 .sidebar #views-exposed-form-studios-page #edit-keys--1-wrapper,
@@ -3737,6 +3750,38 @@ div.modal-forms-modal-content .popups-close {
     text-indent: 100%;
     white-space: nowrap;
     width: 25px;
+}
+a.tickets {
+	background-color: #7CE953 !important;
+	margin-top: 0px;
+	padding-top: 16px;
+	padding-bottom: 16px;
+	background-image: url(/sites/all/themes/enas/images/caret_large.png);
+	background-size: 15px 25px;
+	-ms-behavior: url(/sites/all/themes/enas/css/backgroundsize.min.htc);
+	background-repeat: no-repeat;
+	background-position: 93% center;
+	color: #1D1D1B !important;
+	font-size: 14px !important;
+	text-transform: uppercase;
+	display: block;
+	font-weight: 500;
+	padding-left: 20px;
+	padding-right: 40px;
+	float: left;
+	height: 50px;
+	-moz-border-radius: 0px !important;
+	-webkit-border-radius: 0px !important;
+	border-radius: 0px !important;
+	margin-left: 0px;
+	-webkit-transition: -webkit-opacity 300ms ease-out;
+	-moz-transition: -moz-opacity 300ms ease-out;
+	transition: opacity 300ms ease-out;
+}
+a.tickets:hover {
+	-moz-opacity: 0.8 !important;
+	-webkit-opacity: 0.8 !important;
+	opacity: 0.8 !important;
 }
 
 @media only screen and (max-width: 55em) {

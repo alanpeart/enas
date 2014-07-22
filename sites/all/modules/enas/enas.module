@@ -7,8 +7,7 @@
 
 function enas_user_studio($uid) {
 	$gid = 0;
-	$sql = "SELECT gid FROM `og_membership` where etid = ".$uid." AND entity_type = 'user'  AND state = 1 AND etid NOT IN (SELECT uid FROM users_roles WHERE rid IN (3, 6)) LIMIT 1";
-	$result = db_query($sql);
+	$result = db_query("SELECT gid FROM `og_membership` where etid = :uid AND entity_type = 'user'  AND state = 1 AND etid NOT IN (SELECT uid FROM users_roles WHERE rid IN (3, 6)) LIMIT 1", array(':uid' => $uid));
 	foreach($result as $row) {
 		$gid = $row->gid;
 	}
@@ -25,8 +24,7 @@ function enas_publish_studio_after_payment($uid) {
 	* Anyway, we have to find a way around this, and it's a little hacky, but should work in almost
 	* all scenarios: we get the user's most recent studio node and publish that ourselves.
 	*/
-	$sql = "SELECT nid FROM node WHERE uid = ".$uid." AND type = 'studio' ORDER BY created DESC LIMIT 1";
-	$result = db_query($sql);
+	$result = db_query("SELECT nid FROM node WHERE uid = :uid AND type = 'studio' ORDER BY created DESC LIMIT 1", array(':uid' => $uid));
 	foreach($result as $row) {
 		$nid = $row->nid;
 	}
@@ -38,8 +36,7 @@ function enas_publish_studio_after_payment($uid) {
 function enas_authorname($uid, $link=true) {
 	$name="";
 	global $base_url;
-	$sql = "SELECT name FROM users WHERE uid = ".$uid;
-	$result = db_query($sql);
+	$result = db_query("SELECT name FROM users WHERE uid = :uid",array(':uid' => $uid));
 	foreach($result as $row) {
 		$name = $row->name;
 	}
@@ -74,8 +71,7 @@ function enas_form_user_register_form_alter(&$form, &$form_state, $form_id) {
 
 function enas_studio_link() {
 	global $user; $nid = 0;
-	$sql = "SELECT nid FROM node WHERE uid = ".$user->uid." AND type = 'studio' ORDER BY created DESC LIMIT 1";
-	$result = db_query($sql);
+	$result = db_query("SELECT nid FROM node WHERE uid = :uid AND type = 'studio' ORDER BY created DESC LIMIT 1", array(':uid' => $uid));
 	foreach($result as $row) {
 		$nid = $row->nid;
 	}
@@ -90,8 +86,7 @@ function enas_studio_link() {
 function enas_display_studio($nid) {
 	$members = 0; $hide=TRUE;
 	$studio = node_load($nid);
-	$sql = "SELECT COUNT(DISTINCT etid) as members FROM og_membership WHERE gid = ".$nid." AND group_type = 'node' AND state=1";
-	$result = db_query($sql);
+	$result = db_query("SELECT COUNT(DISTINCT etid) as members FROM og_membership WHERE gid = :gid AND group_type = 'node' AND state=1", array(':gid' => $nid));
 	foreach($result as $row) {
 		$members = $row->members;
 	}
@@ -113,4 +108,127 @@ function computed_field_field_search_text_compute(&$entity_field, $entity_type, 
 		$searchText .= " ".$dis['name'];
 	}
 	$entity_field[0]['value'] = $searchText;
+}
+
+function enas_cron() {
+	enas_notify_studio_managers_annually();
+}
+
+function enas_notify_studio_managers_annually() {
+	/*******************************
+	* Purpose: Notify studio managers when a user has been signed up for a year
+	* Conditions: 
+	* - Only notify once 
+	* - allow opt-out 
+	* - only check once a day 
+	* - only check active users and active studio managers
+	********************************/
+	watchdog('Studio Manager Notification', 'Checking for artists coming up for renewal');
+	// Check once a day
+	$hour = date('H');
+	if($hour != '07') { return; } // Uncomment on go-live
+	// $role = 'administrator'; // testing
+	$role = 'studio manager'; // live
+	$managers = array();
+	$result = db_query("SELECT ur.uid, our.gid FROM users_roles ur INNER JOIN role r ON ur.rid = r.rid INNER JOIN users u ON ur.uid = u.uid INNER JOIN og_users_roles our ON u.uid = our.uid WHERE r.name = :role AND u.status = 1 AND our.rid = 6", array(':role' => $role));
+	foreach($result as $row) {
+		$managers[$row->uid] = $row->gid;
+	}
+	// Got our managers, let's get our users
+	// dsm($managers);
+	foreach($managers as $manager_uid=>$group_id) {
+		$manager = user_load($manager_uid);
+		$members = array();
+		$uresult = db_query("SELECT etid, created FROM og_membership WHERE gid = :gid AND entity_type LIKE 'user'", array(':gid' => $group_id));
+		foreach($uresult as $urow) {
+			// Got the group members, let's see who needs a reminder
+			if(enas_notify_check_year($manager_uid, $urow->etid, $urow->created)) {
+				$members[] = $urow->etid;
+			}
+		}
+		// Send the manager an email for all relevant users
+		foreach($members as $muid) {
+			$member = user_load($muid);
+			// dsm($member);
+			// Check if this manager has not opted out to notifications
+			if(isset($manager->field_opt_out_member_renewal['und'][0]['value']) && $manager->field_opt_out_member_renewal['und'][0]['value'] == 1) {
+				watchdog('Studio Manager Notification', 'Manager has opted out of notifications');
+			}
+			else {
+				enas_send_manager_mail($manager, $member);
+			}
+			enas_update_member_check($manager_uid, $muid);
+		}
+	}
+}
+
+function enas_notify_check_year($manuid, $memuid, $created) {
+	$notify = FALSE;
+	// Check if we've stored a notification for this user/manager any time in the past year
+	$result = db_query("SELECT * FROM user_manager_renewal WHERE member_uid = :memuid AND manager_uid = :manuid AND notified > DATE_SUB(NOW(), INTERVAL 1 YEAR)", array(':memuid' => $memuid, ':manuid' => $manuid));
+	foreach($result as $row) {
+		// Found a notification within the last year - all OK, quit
+		return $notify;
+	}
+	// Didn't find any notifications. We still have to check whether it's less than 12 months since the member joined
+	$yearAgo = strtotime("-1 year", time());
+	if($created <= $yearAgo) {
+		// They joined more than a year ago, so they're due a reminder
+		$notify = TRUE;
+	}
+	return $notify;
+}
+
+function enas_update_member_check($manuid, $memuid) {
+	$got = FALSE;
+	$result = db_query("SELECT * from user_manager_renewal WHERE member_uid = :memuid AND manager_uid = :manuid", array(':memuid' => $memuid, ':manuid' => $manuid));
+	foreach($result as $row) {
+		$got = TRUE;
+	}
+	if($got) {
+		db_query("UPDATE user_manager_renewal SET notified=NOW() WHERE member_uid = :memuid AND manager_uid = :manuid", array(':memuid' => $memuid, ':manuid' => $manuid));
+	}
+	else {
+		db_query("INSERT INTO user_manager_renewal(member_uid, manager_uid, notified) VALUES(:memuid, :manuid, NOW())", array(':memuid' => $memuid, ':manuid' => $manuid));
+	}
+}
+
+function enas_send_manager_mail($manager, $member) {
+	$to = $manager->mail;
+	$from = "jane@essexstudios.org.uk";
+	$params['manager_name'] = $manager->name;
+	$params['member_name'] = $member->name;
+	$params['member_mail'] = $member->mail;
+	$params['member_url'] = 'user/'.$member->uid;
+	
+	$sent = drupal_mail('enasManager', 'key', $to, language_default(), $params, $email_from, TRUE);
+	watchdog('Studio Manager Notification', 'Sent '.$manager->name.' a studio membership reminder email for '.$member->name);
+
+	if(!$sent){
+	//handle send fail, $sent ===false when mail fails, but it won't always recognize a failure
+		// watchdog('Studio Manager Notification', 'Failed to send email to '.$manager->mail);
+	}
+}
+
+/*
+ *	drupal mail looks for a function that matches the first parameter _ mail to build the message
+ */		
+function enasManager_mail($key, &$message, $params) {
+	global $base_url;
+	$options = array(
+		'langcode' => $message['language']->language,
+	  );
+	switch($key) {
+		//switching on $key lets you create variations of the email based on the $key parameter
+		case 'key':
+		$message['subject'] = t('A membership is up for renewal in your studio', array(), $options); //$vars required even if not used to get $language in there
+		//the email body is here, inside the $message array
+		$message['body'][] = 'Dear '.$params['manager_name'].',
+		
+This is your 12-monthly reminder about the membership of '.$params['member_name'].' in your studio. Their email address is '.$params['member_mail'].' and their URL on the ENAS site is ' . $base_url . '/' . $params['member_url'] . '. You do not need to take any action; this email is only for your information. If you do not want to receive these emails, you can opt out by ticking a box in your profile.
+
+Thanks and all the best,
+The ENAS team';
+		break;
+	}
 }
