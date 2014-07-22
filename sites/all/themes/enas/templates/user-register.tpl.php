@@ -9,6 +9,7 @@ print drupal_render($form['form_id']);
 	<div id="register-account">
 		<h2>Account login</h2>
 		<?php print drupal_render($form['account']['name']); ?>
+		<p>The username format should be "Firstname Surname".</p>
 		<?php print drupal_render($form['account']['mail']); ?>
 	</div>
 	<div id="register-about">
