@@ -3806,6 +3806,7 @@ a.tickets:hover {
 }
 .node-studio-form #edit-body .form-type-textarea {
 	width: 100%;
+	display: block;
 }
 
 @media only screen and (max-width: 55em) {
