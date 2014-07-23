@@ -17,6 +17,15 @@
 		  });
 		 });
 	}
+	if($('.view-artist-more-pictures .view-content').length) {
+	  $('.view-artist-more-pictures .view-content').imagesLoaded( function() {
+	    var container = document.querySelector('.view-artist-more-pictures .view-content');
+		  var msnry = new Masonry( container, {
+			columnWidth: 230,
+			itemSelector: '.views-row',
+		  });
+		 });
+	}	
 	$('.form-item-mailchimp-lists-mailchimp-email-newsletter-signup-mergevars-EMAIL input').example('Enter email for newsletter sign-up');
 	$('.form-item-mailchimp-lists-mailchimp-email-newsletter-signup-mergevars-FNAME input').example('Name');
 	if($('.flexslider_views_slideshow_slide .views-field-title').length) {
