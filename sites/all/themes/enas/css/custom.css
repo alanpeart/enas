@@ -644,6 +644,13 @@ header .block-system-user-menu {
 	float: right;
 }
 
+#views-exposed-form-income-generated-page,
+#views-exposed-form-new-artist-signups-page,
+#views-exposed-form-new-artist-signups-page-1,
+#views-exposed-form-new-studios-page {
+	margin-top: 20px;
+}
+
 .form-item-distance-search-units {
 	display:none !important;
 }
