@@ -1212,6 +1212,9 @@ main h2.block-title {
 	height: 320px;
 	max-width: 100%;
 }
+.view-featured-artist .views-field-field-photo img {
+	width: 100px;
+}
 .view-featured-artist .views-field-field-about-the-artist {
 	width: 245px;
 	height: 320px;
@@ -1220,6 +1223,14 @@ main h2.block-title {
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	padding-top:0;
+}
+.artist-photo {
+	margin: 0 0 15px 0;
+	max-height: 100px;
+	clear: left;
+}
+.artist-photo img {
+	max-height: 100px;
 }
 .view-featured-artist .views-field-field-about-the-artist .views-label {
 	text-transform: uppercase;
