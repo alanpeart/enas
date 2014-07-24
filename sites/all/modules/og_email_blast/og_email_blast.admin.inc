@@ -71,8 +71,8 @@ function og_email_blast_group_submit($form, &$form_state) {
 function og_email_blast_mail_send($form_values) {
   $module = 'og_email_blast';
   $key = 'group_message';
-  $to = $form_values['to'];
-  $from = $form_values['admin_email'];
+  $to = $form_values['admin_email'];
+  $from = variable_get('site_mail', 'admin@example.com');
   $params = $form_values;
   $language = language_default();
   $send = TRUE;
@@ -93,7 +93,7 @@ function og_email_blast_mail($key, &$message, $params) {
     case 'group_message':
       $message['headers']['Bcc'] = $params['to'];
       $message['headers']['Reply-To'] = $params['admin_email'];
-      $message['subject'] = check_plain($params['subject']);
+      $message['subject'] = 'Email from '.$params['group'].': '.check_plain($params['subject']);
       $message['body'][] = check_plain($params['message']);
       watchdog('og_email_blast', $params['admin'] . ' sent an e-mail blast to ' . $params['group']);
       break;
