@@ -631,6 +631,12 @@ header .block-system-user-menu {
 #edit-distance-search-distance {
 	margin-bottom:0;
 }
+#views-exposed-form-income-generated-page .views-widget .form-item {
+	text-align: right;
+}
+#views-exposed-form-income-generated-page .views-submit-button {
+	float: right;
+}
 
 .form-item-distance-search-units {
 	display:none !important;

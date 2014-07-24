@@ -41,6 +41,8 @@
 			$account = user_load(arg(1));
 		}
 		$viewer = user_load($user->uid);
+		unset($user_profile['user_picture']);
+		// dsm($user_profile);
 		// If the user is a studio manager, we have to make sure that they can only see
 		// the "Feature" flag if the user is in the group that they manage
 		if(in_array('studio manager', $user->roles)) {
