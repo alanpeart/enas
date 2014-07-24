@@ -1246,6 +1246,17 @@ main h2.block-title {
 	font-weight:500;
 	line-height:0.9em;
 }
+a.ckeditor_links {
+	clear: both;
+	display: block;
+}
+.tabledrag-toggle-weight-wrapper {
+	display: none;
+}
+#edit-xmlsitemap .form-item {
+	clear: both;
+	display: block;
+}
 #og-email-blast-group .form-item {
 	float: left;
 	clear: left;
