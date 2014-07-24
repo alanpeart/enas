@@ -653,6 +653,8 @@ header .block-system-user-menu {
 	float: left;
 	width: 100%;
 	clear: both;
+	border: 1px solid #ccc;
+	padding: 15px;
 }
 .admin-buttons li {
 	display: inline;
