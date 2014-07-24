@@ -1246,6 +1246,18 @@ main h2.block-title {
 	font-weight:500;
 	line-height:0.9em;
 }
+#og-email-blast-group .form-item {
+	float: left;
+	clear: left;
+}
+#og-email-blast-group .form-item input {
+	margin-bottom: 0;
+}
+#og-email-blast-group .form-submit {
+	float: left;
+	clear: left;
+	margin: 15px 0 0 0;
+}
 .view-featured-artist .views-field-field-about-the-atist {
 	color: #666;
 	line-height: 1.5;
