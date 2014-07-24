@@ -631,15 +631,43 @@ header .block-system-user-menu {
 #edit-distance-search-distance {
 	margin-bottom:0;
 }
-#views-exposed-form-income-generated-page .views-widget .form-item {
+#views-exposed-form-income-generated-page .views-widget .form-item,
+#views-exposed-form-new-artist-signups-page .views-widget .form-item,
+#views-exposed-form-new-artist-signups-page-1 .views-widget .form-item,
+#views-exposed-form-new-studios-page .views-widget .form-item {
 	text-align: right;
 }
-#views-exposed-form-income-generated-page .views-submit-button {
+#views-exposed-form-income-generated-page .views-submit-button,
+#views-exposed-form-new-artist-signups-page .views-submit-button,
+#views-exposed-form-new-artist-signups-page-1 .views-submit-button,
+#views-exposed-form-new-studios-page .views-submit-button {
 	float: right;
 }
 
 .form-item-distance-search-units {
 	display:none !important;
+}
+
+.admin-buttons {
+	margin: 20px 0 0 0 !important;
+	float: left;
+	width: 100%;
+	clear: both;
+}
+.admin-buttons li {
+	display: inline;
+}
+.admin-buttons li a {
+	display: block;
+	float: left;
+	width: auto;
+	padding: 15px 30px;
+	background-color: #1d1d1b;
+	color: #fff;
+	margin-right: 15px;
+	margin-bottom: 15px;
+	text-transform: uppercase;
+	font-weight: 500;
 }
 
 .views-exposed-form input[type="text"] {
